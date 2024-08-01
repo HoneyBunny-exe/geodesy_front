@@ -8,6 +8,7 @@ import ProfileView from "@/views/ProfileView.vue";
 import NotFoundView from "@/views/NotFoundView.vue";
 
 const routes = [
+	{ path: "/", redirect: "/home" },
 	{ path: "/home", component: HomeView },
 	{ path: "/profile", component: ProfileView },
 	{ path: "/map", component: MapView },

@@ -1,5 +1,6 @@
 <template>
 	<gheader></gheader>
+	<RouterView />
 </template>
 
 <script>

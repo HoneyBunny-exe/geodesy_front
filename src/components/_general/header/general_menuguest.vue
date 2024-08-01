@@ -2,15 +2,15 @@
 	<div>
 		<gmbutton
 			:buttonNameProp="this.$constants.STRING.HOME"
-			:clickCBProp="homeClick"
+			@click="homeClick"
 		></gmbutton>
 		<gmbutton
 			:buttonNameProp="this.$constants.STRING.MAP"
-			:clickCBProp="mapClick"
+			@click="mapClick"
 		></gmbutton>
 		<gmbutton
 			:buttonNameProp="this.$constants.STRING.LOGIN"
-			:clickCBProp="logginClick"
+			@click="logginClick"
 		></gmbutton>
 	</div>
 </template>
@@ -23,13 +23,13 @@ export default {
 	},
 	methods: {
 		homeClick() {
-			// TODO
+			this.$router.push("/home");
 		},
 		mapClick() {
-			// TODO
+			this.$router.push("/map");
 		},
 		logginClick() {
-			// TODO
+			this.$router.push("/auth");
 		},
 	},
 };

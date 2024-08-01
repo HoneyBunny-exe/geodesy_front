@@ -6,8 +6,6 @@
 </template>
 
 <script>
-import { store } from "@/store";
-
 export default {
 	props: {
 		imageURLProp: {
@@ -15,10 +13,6 @@ export default {
 		},
 		buttonNameProp: {
 			type: String,
-			required: true,
-		},
-		clickCBProp: {
-			type: Function,
 			required: true,
 		},
 	},
