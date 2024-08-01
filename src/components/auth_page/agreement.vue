@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="debug_border_style">
 		<button v-on:click="clickHandler"></button>
 		<p>{{ text }}</p>
 	</div>

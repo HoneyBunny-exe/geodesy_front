@@ -1,24 +1,24 @@
 <template>
 	<div>
 		<gmbutton
-			:clickCBProp="homeClick"
 			:buttonNameProp="this.$constants.STRING.HOME"
+			@click="homeClick"
 		></gmbutton>
 		<gmbutton
-			:clickCBProp="helpClick"
 			:buttonNameProp="this.$constants.STRING.HELP"
+			@click="helpClick"
 		></gmbutton>
 		<gmbutton
-			:clickCBProp="createClick"
 			:buttonNameProp="this.$constants.STRING.CREATE"
+			@click="createClick"
 		></gmbutton>
 		<gmbutton
-			:clickCBProp="mapClick"
 			:buttonNameProp="this.$constants.STRING.MAP"
+			@click="mapClick"
 		></gmbutton>
 		<gmbutton
-			:clickCBProp="profileClick"
 			:buttonNameProp="this.$constants.STRING.PROFILE"
+			@click="profileClick"
 		></gmbutton>
 	</div>
 </template>
@@ -31,19 +31,19 @@ export default {
 	},
 	methods: {
 		homeClick() {
-			// TODO
+			this.$router.push("/home");
 		},
 		helpClick() {
-			// TODO
+			this.$router.push("/help");
 		},
 		createClick() {
-			// TODO
+			this.$router.push("/create");
 		},
 		mapClick() {
-			// TODO
+			this.$router.push("/map");
 		},
 		profileClick() {
-			// TODO
+			this.$router.push("/profile");
 		},
 	},
 };

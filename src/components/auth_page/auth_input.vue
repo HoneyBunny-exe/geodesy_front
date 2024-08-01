@@ -2,7 +2,7 @@
 	<div>
 		<div>{{ underText }}</div>
 		<slot name="visibleButton"></slot>
-		<input />
+		<input :placeholder="placeholder" />
 	</div>
 </template>
 
@@ -16,6 +16,10 @@ export default {
 		isConfident: {
 			type: Boolean,
 			default: false,
+		},
+		placeholder: {
+			type: String,
+			required: false,
 		},
 	},
 };

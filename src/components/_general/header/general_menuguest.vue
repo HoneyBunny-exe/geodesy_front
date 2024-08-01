@@ -9,7 +9,7 @@
 			@click="mapClick"
 		></gmbutton>
 		<gmbutton
-			:buttonNameProp="this.$constants.STRING.LOGIN"
+			:buttonNameProp="this.$constants.STRING.ENTER"
 			@click="logginClick"
 		></gmbutton>
 	</div>

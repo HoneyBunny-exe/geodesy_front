@@ -1,13 +1,11 @@
 <template>
-	<div>
-		<input :placeholder="placeholder" />
-	</div>
+	<button>{{ text }}</button>
 </template>
 
 <script>
 export default {
 	props: {
-		placeholder: {
+		text: {
 			type: String,
 			required: true,
 		},
