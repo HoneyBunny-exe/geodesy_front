@@ -2,12 +2,17 @@
 	<div>
 		<div>{{ underText }}</div>
 		<slot name="visibleButton"></slot>
-		<input :placeholder="placeholder" />
+		<input :placeholder="placeholder" v-model="value" @input="update" />
 	</div>
 </template>
 
 <script>
 export default {
+	data() {
+		return {
+			value: this.parentValue,
+		};
+	},
 	props: {
 		underText: {
 			type: String,
@@ -20,6 +25,20 @@ export default {
 		placeholder: {
 			type: String,
 			required: false,
+		},
+
+		// Передаваемое значение
+		parentValue: {
+			type: String,
+		},
+		// Имя вызываемого события
+		eventName: {
+			type: String,
+		},
+	},
+	methods: {
+		update() {
+			this.$emit(this.eventName, this.value);
 		},
 	},
 };

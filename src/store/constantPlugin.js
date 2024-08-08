@@ -34,11 +34,6 @@ const ConstantsPlugin = {
 				SEND: "Отправить",
 			},
 			DIALOG: {
-				LOGIN: {
-					TITLE: "Введите новый логин",
-					PLACEHOLDER1: "Новый логин",
-					PLACEHOLDER2: "Введите ещё раз",
-				},
 				PASSWORD: {
 					TITLE: "Введите новый пароль",
 					PLACEHOLDER1: "Новый пароль",

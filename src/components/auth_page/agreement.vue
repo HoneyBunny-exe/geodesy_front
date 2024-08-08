@@ -1,6 +1,6 @@
 <template>
 	<div class="debug_border_style">
-		<button v-on:click="clickHandler"></button>
+		<button v-on:click="updateParent">test</button>
 		<p>{{ text }}</p>
 	</div>
 </template>
@@ -10,20 +10,12 @@ export default {
 	data() {
 		return {
 			text: "я ознакомлен с политикой конфиденциальности и даю согласие на обработку персональных данных",
-			isButtonPressed: false,
 		};
 	},
-	props: {
-		isButtonClickedCB: {
-			type: Function,
-			required: true,
-		},
-	},
 	methods: {
-		clickHandler() {
-			this.isButtonPressed = !this.isButtonPressed;
+		updateParent() {
 			// изменить изображение
-			this.isButtonClickedCB(this.isButtonPressed);
+			this.$emit("update-agreement");
 		},
 	},
 };

@@ -1,7 +1,11 @@
 <template>
 	<gheader></gheader>
 	<RouterView />
-	<button @click="this.$store.state.isLoggedIn = !this.$store.state.isLoggedIn">Change isLoggedIn</button>
+	<button
+		@click="this.$store.state.isLoggedIn = !this.$store.state.isLoggedIn"
+	>
+		Change isLoggedIn
+	</button>
 </template>
 
 <script>

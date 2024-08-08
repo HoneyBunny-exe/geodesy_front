@@ -9,6 +9,7 @@
 		<mpimage2></mpimage2>
 		<mpcontent3></mpcontent3>
 		<mpdecor3></mpdecor3>
+		<button v-on:click="test">test</button>
 	</div>
 </template>
 
@@ -33,6 +34,12 @@ export default {
 		mpdecor3: main_page_decor3,
 		mpimage1: main_page_imagecontainer1,
 		mpimage2: main_page_imagecontainer2,
+	},
+
+	methods: {
+		test() {
+			testGet();
+		},
 	},
 };
 </script>
