@@ -1,9 +1,9 @@
 <template>
 	<div id="container">
-		<p>Имя:</p>
-		<p>Фамилия:</p>
-		<p>Отчество:</p>
-		<p>Пол:</p>
+		<p>Имя: {{ this.userData.first_name }}</p>
+		<p>Фамилия: {{ this.userData.second_name }}</p>
+		<p>Отчество: {{ this.userData.third_name }}</p>
+		<p>Пол: {{ this.userData.sex }}</p>
 	</div>
 </template>
 

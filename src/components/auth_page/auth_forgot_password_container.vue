@@ -63,7 +63,7 @@ export default {
 					//test
 					console.log(this.$store.getters.getAll);
 				});
-			} catch (event) {
+			} catch (error) {
 				console.log(error);
 			}
 		},

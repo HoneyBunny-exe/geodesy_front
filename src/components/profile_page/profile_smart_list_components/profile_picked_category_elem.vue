@@ -1,15 +1,18 @@
 <template>
-	<div id="container">
-		<img alt:NoImage />
-		<p>Почта: {{ this.email }}</p>
-		<p>Пароль: ********</p>
+	<div>
+		<p>{{ this.data }}</p>
 	</div>
 </template>
 
 <script>
 export default {
+	data() {
+		return {
+			data: this.dataProp,
+		};
+	},
 	props: {
-		email: {
+		dataProp: {
 			type: String,
 			required: true,
 		},
