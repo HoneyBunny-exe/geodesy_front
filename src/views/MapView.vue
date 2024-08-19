@@ -1,7 +1,7 @@
 <template>
 	<msearch_bar></msearch_bar>
-    <mmain_box></mmain_box>
-    <mresult_menu></mresult_menu>
+	<mmain_box></mmain_box>
+	<mresult_menu></mresult_menu>
 </template>
 
 <script>

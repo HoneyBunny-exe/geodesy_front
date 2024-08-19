@@ -6,6 +6,7 @@ const store = createStore({
 		accessToken: "",
 		refreshToken: "",
 		TFAToken: "",
+		YMapsAccessToken: "",
 	},
 	getters: {
 		getLoggedIn: (state) => {
@@ -19,6 +20,9 @@ const store = createStore({
 		},
 		getAccessToken: (state) => {
 			return state.accessToken;
+		},
+		getYMapsAccessToken: (state) => {
+			return state.YMapsAccessToken;
 		},
 
 		getAll: (state) => {
