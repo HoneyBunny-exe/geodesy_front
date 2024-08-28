@@ -1,6 +1,6 @@
 <template>
-	<div class="debug_border_style">
-		<button v-on:click="updateParent">test</button>
+	<div id="agreement">
+		<input v-on:click="updateParent" type="checkbox" />
 		<p>{{ text }}</p>
 	</div>
 </template>
@@ -10,15 +10,22 @@ export default {
 	data() {
 		return {
 			text: "я ознакомлен с политикой конфиденциальности и даю согласие на обработку персональных данных",
+			status: false,
 		};
 	},
 	methods: {
 		updateParent() {
-			// изменить изображение
-			this.$emit("update-agreement");
+			this.status = !this.status;
 		},
 	},
 };
 </script>
 
-<style></style>
+<style>
+#agreement {
+	display: grid;
+	grid-template-areas: "A B";
+	grid-template-columns: 20px 1rf;
+	column-gap: 15px;
+}
+</style>

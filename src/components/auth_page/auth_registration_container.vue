@@ -1,22 +1,25 @@
 <template>
 	<div id="container">
-		<p>{{ this.$constants.STRING.WELCOME }}</p>
+		<p class="title">Давайте знакомиться!</p>
 		<ainput
-			:is-confident="false"
+			class="auth_input"
+			:confident="`auto`"
 			:underText="this.$constants.STRING.FIRST_NAME"
 			:parentValue="firstName"
 			@firstNameUpdateEvent="firstNameUpdate"
 			:eventName="input1"
 		></ainput>
 		<ainput
-			:isConfident="false"
+			class="auth_input"
+			:confident="`auto`"
 			:underText="this.$constants.STRING.SECOND_NAME"
 			:parentValue="secondName"
 			@secondNameUpdateEvent="secondNameUpdate"
 			:eventName="input2"
 		></ainput>
 		<ainput
-			:isConfident="false"
+			class="auth_input"
+			:confident="`auto`"
 			:underText="this.$constants.STRING.THIRD_NAME"
 			:parentValue="thirdName"
 			@thirdNameUpdateEvent="thirdNameUpdate"
@@ -31,14 +34,16 @@
 		</select>
 
 		<ainput
-			:isConfident="false"
+			class="auth_input"
+			:confident="`auto`"
 			:underText="this.$constants.STRING.EMAIL"
 			:parentValue="email"
 			@emailUpdateEvent="emailUpdate"
 			:eventName="input4"
 		></ainput>
 		<ainput
-			:isConfident="true"
+			class="auth_input"
+			:confident="`auto`"
 			:underText="this.$constants.STRING.PASSWORD"
 			:parent-value="password"
 			@passwordUpdateEvent="passwordUpdate"
@@ -46,10 +51,15 @@
 		></ainput>
 		<agreement @update-agreement="isAgreementClicked"></agreement>
 		<general_button
+			class="auth_button"
 			:text="this.$constants.STRING.REGISTRATION"
 			@click="sendData"
 		></general_button>
-		<general_button :text="this.$constants.STRING.ENTER"></general_button>
+		<general_button
+			class="auth_button"
+			:text="this.$constants.STRING.ENTER"
+			@click="goToEnter"
+		></general_button>
 	</div>
 </template>
 
@@ -82,6 +92,9 @@ export default {
 		general_button,
 	},
 	methods: {
+		goToEnter() {
+			this.$emit("goToEvent", "aecontainer 1");
+		},
 		isAgreementClicked() {
 			this.isAgree = !this.isAgree;
 		},
@@ -116,13 +129,32 @@ export default {
 					header: {},
 				});
 				this.$store.commit("setTFAToken", response.data.tfa_token);
+				this.$emit("goToEvent", "araply 2");
 				console.log(response.data);
 			} catch (error) {
-				console.log(error.response.data);
+				console.log(error);
 			}
 		},
+
+		updateStyle() {},
 	},
 };
 </script>
 
-<style></style>
+<style>
+#container {
+	display: flex;
+	flex-direction: column;
+}
+select {
+	width: 100%;
+	padding-left: 10px;
+	font-size: 1.1rem;
+	height: 36px;
+	border-radius: 10px;
+	border: 2px solid var(--ash_grey);
+}
+select {
+	margin-top: 10px;
+}
+</style>

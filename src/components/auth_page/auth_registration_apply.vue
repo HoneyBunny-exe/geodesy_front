@@ -1,11 +1,13 @@
 <!-- Подтверждение создания аккаунта -->
 <template>
 	<div id="container">
-		<gainput
+		<ainput
+			class="auth_input_confirm"
+			:confident="`auto`"
 			:parent-value="confirmCode"
 			@confirmCodeUpdateEvent="confirmCodeUpdate"
-			:eventName="input1"
-		></gainput>
+			:event-name="input1"
+		></ainput>
 		<gbutton
 			:text="this.$constants.STRING.SEND"
 			@click="sendData"
@@ -15,7 +17,7 @@
 
 <script>
 import axios from "axios";
-import general_apply_input from "../_general/general_apply_input.vue";
+import apply_input from "./auth_input.vue";
 import general_button from "../_general/general_button.vue";
 export default {
 	data() {
@@ -25,7 +27,7 @@ export default {
 		};
 	},
 	components: {
-		gainput: general_apply_input,
+		ainput: apply_input,
 		gbutton: general_button,
 	},
 	methods: {

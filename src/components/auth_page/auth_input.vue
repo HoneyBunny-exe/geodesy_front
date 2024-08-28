@@ -1,8 +1,13 @@
 <template>
-	<div>
-		<div>{{ underText }}</div>
+	<div id="auth_input_container">
+		<label>{{ underText }}</label>
 		<slot name="visibleButton"></slot>
-		<input :placeholder="placeholder" v-model="value" @input="update" />
+		<input
+			:placeholder="placeholder"
+			v-model="value"
+			@input="update"
+			:type="confident"
+		/>
 	</div>
 </template>
 
@@ -18,8 +23,8 @@ export default {
 			type: String,
 			required: false,
 		},
-		isConfident: {
-			type: Boolean,
+		confident: {
+			type: String,
 			default: false,
 		},
 		placeholder: {

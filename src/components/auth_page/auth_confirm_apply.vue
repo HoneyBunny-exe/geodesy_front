@@ -1,12 +1,18 @@
 <!-- Подтверждение изменения пароля -->
 <template>
 	<div id="container">
-		<gainput
+		<p class="title_small">
+			На указанную вами почту пришел код-подтверждение
+		</p>
+		<ainput
+			class="auth_input_confirm"
+			:confident="`auto`"
 			:parent-value="confirmCode"
 			@confirmCodeUpdateEvent="confirmCodeUpdate"
 			:event-name="input1"
-		></gainput>
+		></ainput>
 		<gbutton
+			class="auth_button"
 			:text="this.$constants.STRING.SEND"
 			@click="sendData"
 		></gbutton>
@@ -15,7 +21,7 @@
 
 <script>
 import axios from "axios";
-import general_apply_input from "../_general/general_apply_input.vue";
+import auth_input from "./auth_input.vue";
 import general_button from "../_general/general_button.vue";
 export default {
 	data() {
@@ -26,7 +32,7 @@ export default {
 		};
 	},
 	components: {
-		gainput: general_apply_input,
+		ainput: auth_input,
 		gbutton: general_button,
 	},
 	methods: {
@@ -45,6 +51,7 @@ export default {
 				}).then((result) => {
 					//test
 					console.log(this.$store.getters.getAll);
+					this.$emit("goToEvent", "aecontainer 3");
 					console.log("(Не бек) Пароль получилось поменять");
 				});
 			} catch (error) {

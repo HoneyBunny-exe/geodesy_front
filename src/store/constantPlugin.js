@@ -25,7 +25,6 @@ const ConstantsPlugin = {
 				PASSWORD: "Пароль",
 				PASSWORD_REPEAT: "Подтвердите пароль",
 				REGISTRATION: "Зарегистрироваться",
-				WELCOME: "Давайте знакомиться!",
 				FIRST_NAME: "Имя",
 				SECOND_NAME: "Фамилия",
 				THIRD_NAME: "Отчество",

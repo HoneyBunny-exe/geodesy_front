@@ -1,14 +1,17 @@
 <template>
 	<div id="container">
+		<p class="title_small">Забыли пароль, Сэр? Ну что ж, бывает...</p>
 		<ainput
-			:isConfident="false"
+			class="auth_input"
+			:confident="`auto`"
 			:underText="this.$constants.STRING.EMAIL"
 			:parentValue="email"
 			@emailUpdateEvent="emailUpdate"
 			:eventName="input1"
 		></ainput>
 		<ainput
-			:isConfident="false"
+			class="auth_input"
+			:confident="`auto`"
 			:underText="this.$constants.STRING.PASSWORD"
 			:placeholder="this.$constants.STRING.NEW_PASSWORD"
 			:parentValue="newPassword"
@@ -16,6 +19,7 @@
 			:eventName="input2"
 		></ainput>
 		<general_button
+			class="auth_button"
 			:text="this.$constants.STRING.SEND"
 			@click="sendData"
 		></general_button>
@@ -49,20 +53,22 @@ export default {
 		},
 		async sendData() {
 			try {
-				await axios({
+				let response = await axios({
 					method: "post",
 					url: "http://127.0.0.1:8000/api/v1/auth/forgotten/password/",
 					data: {
 						email: this.email,
 						password: this.newPassword,
 					},
-				}).then((result) => {
-					console.log(result.data);
-					this.$store.commit("setTFAToken", result.data.tfa_token);
-
-					//test
-					console.log(this.$store.getters.getAll);
+					header: {},
 				});
+				console.log(response.data);
+				this.$store.commit("setTFAToken", response.data.tfa_token);
+				this.$emit("goToEvent", "acaply 2");
+
+				//test
+				console.log(response.data);
+				// console.log(this.$store.getters.getAll);
 			} catch (error) {
 				console.log(error);
 			}

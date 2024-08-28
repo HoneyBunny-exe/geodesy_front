@@ -1,26 +1,37 @@
 <template>
 	<div id="container">
-		<p>{{ this.$constants.STRING.ENTER }}</p>
+		<p class="title">{{ this.$constants.STRING.ENTER }}</p>
 		<ainput
-			:isConfident="false"
+			class="auth_input"
+			:confident="`auto`"
 			:underText="this.$constants.STRING.EMAIL"
 			:parentValue="email"
 			@emailUpdateEvent="emailUpdate"
 			:eventName="input1"
 		></ainput>
 		<ainput
-			:isConfident="true"
+			class="auth_input"
+			:confident="`password`"
 			:underText="this.$constants.STRING.PASSWORD"
 			:parentValue="password"
 			@passwordUpdateEvent="passwordUpdate"
 			:eventName="input2"
 		></ainput>
 		<gbutton
+			class="auth_button"
 			:text="this.$constants.STRING.ENTER"
 			@click="sendData"
 		></gbutton>
-		<gbutton :text="this.$constants.STRING.FORGOT_PASSWORD"></gbutton>
-		<gbutton :text="this.$constants.STRING.REGISTRATION"></gbutton>
+		<gbutton
+			class="auth_button"
+			:text="this.$constants.STRING.FORGOT_PASSWORD"
+			@click="goToForgotPassword"
+		></gbutton>
+		<gbutton
+			class="auth_button"
+			:text="this.$constants.STRING.REGISTRATION"
+			@click="goToRegistration"
+		></gbutton>
 	</div>
 </template>
 
@@ -43,6 +54,12 @@ export default {
 		};
 	},
 	methods: {
+		goToRegistration() {
+			this.$emit("goToEvent", "arcontainer 1");
+		},
+		goToForgotPassword() {
+			this.$emit("goToEvent", "afpcontainer 1");
+		},
 		emailUpdate(value) {
 			this.email = value;
 		},
@@ -77,7 +94,15 @@ export default {
 			}
 		},
 	},
+	mounted() {
+		document.getElementsByClassName("");
+	},
 };
 </script>
 
-<style></style>
+<style>
+#container {
+	display: flex;
+	flex-direction: column;
+}
+</style>

@@ -1,11 +1,6 @@
 <template>
 	<gheader></gheader>
 	<RouterView />
-	<button
-		@click="this.$store.state.isLoggedIn = !this.$store.state.isLoggedIn"
-	>
-		Change isLoggedIn
-	</button>
 </template>
 
 <script>
@@ -17,4 +12,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+@import "@/assets/styles/main.css";
+</style>
