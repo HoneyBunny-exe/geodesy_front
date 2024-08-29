@@ -1,7 +1,7 @@
 <template>
-	<div>
-		<h1>{{ this.$constants.STRING.MAIN_PAGE_TITLE }}</h1>
-		<hr id="horizontal_line" />
+	<div id="home_title">
+		<h1>Государственная геодезическая сеть</h1>
+		<hr/>
 	</div>
 </template>
 

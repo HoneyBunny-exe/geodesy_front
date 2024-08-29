@@ -1,7 +1,7 @@
 <template>
 	<nav>
-		<gmenu v-if="isLoggedIn"></gmenu>
-		<gmenuguest v-else></gmenuguest>
+		<gmenu v-if="isLoggedIn" class="menu"></gmenu>
+		<gmenuguest v-else class="menu"></gmenuguest>
 	</nav>
 </template>
 
@@ -22,4 +22,35 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+@media (max-width: 1024px) {
+	nav {
+		position: fixed;
+		width: calc(100% + calc(100vw - 100%));
+		background-color: white;
+		bottom: 0;
+		height: 50px;
+
+		.menu {
+			height: inherit;
+			display: flex;
+			justify-content: space-around;
+		}
+	}
+}
+@media (min-width: 1024px) {
+	nav {
+		position: sticky;
+		font-size: 1.3rem;
+		top: 0px;
+		background-color: white;
+		height: 50px;
+
+		.menu {
+			display: flex;
+			height: inherit;
+			justify-content: space-around;
+		}
+	}
+}
+</style>

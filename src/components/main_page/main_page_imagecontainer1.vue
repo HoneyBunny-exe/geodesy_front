@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div id="mpimage1">
 		<img src="../../assets/images/main_page/main_page_photo1.png" />
 	</div>
 </template>

@@ -1,16 +1,19 @@
 <template>
 	<div>
 		<gmbutton
-			:buttonNameProp="this.$constants.STRING.HOME"
+			:buttonNameProp="`Главная`"
 			@click="homeClick"
+			:imageURLProp="`src/assets/images/header/home_icon.png`"
 		></gmbutton>
 		<gmbutton
-			:buttonNameProp="this.$constants.STRING.MAP"
+			:buttonNameProp="`Карта`"
 			@click="mapClick"
+			:imageURLProp="`src/assets/images/header/map_icon.png`"
 		></gmbutton>
 		<gmbutton
-			:buttonNameProp="this.$constants.STRING.ENTER"
+			:buttonNameProp="`Войти`"
 			@click="logginClick"
+			:imageURLProp="`src/assets/images/header/login_icon.png`"
 		></gmbutton>
 	</div>
 </template>

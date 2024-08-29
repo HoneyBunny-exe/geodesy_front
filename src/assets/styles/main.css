@@ -5,6 +5,7 @@
 	font-weight: 500;
 	font-style: normal;
 
+	--light_green: #ecf7de;
 	--raisin_black: #2e2e3a;
 	--white: #fff;
 	--ash_grey: #d9d9d9;
@@ -14,6 +15,8 @@
 *::before,
 *::after {
 	box-sizing: border-box;
+	margin: 0px;
+	overflow-x: hidden;
 }
 
 /* Применяется к <ainput> в компоненте

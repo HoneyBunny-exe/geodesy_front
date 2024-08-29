@@ -25,7 +25,7 @@ export default {
 #agreement {
 	display: grid;
 	grid-template-areas: "A B";
-	grid-template-columns: 20px 1rf;
+	grid-template-columns: 20px 1fr;
 	column-gap: 15px;
 }
 </style>

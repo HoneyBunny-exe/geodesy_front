@@ -1,5 +1,5 @@
 <template>
-	<div id="root">
+	<div id="mpdecor1">
 		<div id="circle1"></div>
 		<div id="circle2"></div>
 		<div id="circle3"></div>

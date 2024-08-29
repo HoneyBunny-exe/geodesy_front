@@ -1,24 +1,29 @@
 <template>
 	<div>
 		<gmbutton
-			:buttonNameProp="this.$constants.STRING.HOME"
+			:buttonNameProp="`Главная`"
 			@click="homeClick"
+			:imageURLProp="`src/assets/images/header/home_icon.png`"
 		></gmbutton>
 		<gmbutton
-			:buttonNameProp="this.$constants.STRING.HELP"
+			:buttonNameProp="`Помощь`"
 			@click="helpClick"
+			:imageURLProp="`src/assets/images/header/help_icon.png`"
 		></gmbutton>
 		<gmbutton
-			:buttonNameProp="this.$constants.STRING.CREATE"
+			:buttonNameProp="`Создать`"
 			@click="createClick"
+			:imageURLProp="`src/assets/images/header/create_icon.png`"
 		></gmbutton>
 		<gmbutton
-			:buttonNameProp="this.$constants.STRING.MAP"
+			:buttonNameProp="`Карта`"
 			@click="mapClick"
+			:imageURLProp="`src/assets/images/header/map_icon.png`"
 		></gmbutton>
 		<gmbutton
-			:buttonNameProp="this.$constants.STRING.PROFILE"
+			:buttonNameProp="`Профиль`"
 			@click="profileClick"
+			:imageURLProp="`src/assets/images/header/profile_icon.png`"
 		></gmbutton>
 	</div>
 </template>

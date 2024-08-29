@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div id="container">
 		<img :src="imageURLProp" alt="NoImage" />
 		<p>{{ buttonNameProp }}</p>
 	</div>
@@ -19,4 +19,22 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+#container {
+	display: flex;
+	justify-content: center;
+}
+@media (min-width: 1024px) {
+	img {
+		display: none;
+	}
+}
+@media (max-width: 1024px) {
+	img {
+		width: 23px;
+	}
+	p {
+		display: none;
+	}
+}
+</style>
