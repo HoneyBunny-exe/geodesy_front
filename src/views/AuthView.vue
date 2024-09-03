@@ -125,15 +125,17 @@ export default {
 		// Обновление стилей при изменении ширины auth_container
 		updateStyle() {
 			// Скругляем рамки
-			let auth_container_width = this.$refs.auth_container.offsetWidth;
-			let auth_container_height = this.$refs.auth_container.offsetHeight;
+			let auth_container_width = this.$refs?.auth_container?.offsetWidth;
+			// let auth_container_height = this.$refs.auth_container.offsetHeight;
 
-			if (auth_container_width < 380) {
-				this.$refs.auth_container.style.borderRadius = `${
-					this.$refs.auth_container.offsetWidth / 10
-				}px`;
-			} else {
-				this.$refs.auth_container.style.borderRadius = "38px";
+			if (auth_container_width !== undefined) {
+				if (auth_container_width < 380) {
+					this.$refs.auth_container.style.borderRadius = `${
+						this.$refs.auth_container.offsetWidth / 10
+					}px`;
+				} else {
+					this.$refs.auth_container.style.borderRadius = "38px";
+				}
 			}
 
 			// // устанавливаем высоту auth_delimeter
@@ -150,15 +152,17 @@ export default {
 			// 	this.$refs.auth_image.style.width = "63px";
 			// }
 
-			console.log("AuthView: Resize has been activated");
-			console.log(this.$refs.auth_image.style.width);
-			console.log(this.$refs.auth_container.style.borderRadius);
+			// console.log("AuthView: Resize has been activated");
+			// console.log(this.$refs.auth_image_fingerprint.style.width);
+			// console.log(this.$refs.auth_container.style.borderRadius);
 		},
 	},
 
 	mounted() {
-		this.observer = new ResizeObserver(this.updateStyle);
-		this.observer.observe(this.$refs.auth_container);
+		this.$nextTick(() => {
+			this.observer = new ResizeObserver(this.updateStyle);
+			this.observer.observe(this.$refs.auth_container);
+		});
 	},
 	beforeDestroy() {
 		this.observer.disconnect();
@@ -178,6 +182,7 @@ export default {
 	width: 70%;
 
 	padding: 20px;
+	margin-top: 20%;
 	margin-left: auto;
 	margin-right: auto;
 
@@ -218,8 +223,8 @@ export default {
 }
 #auth_image_arrow {
 	position: absolute;
-	width: 35px;
-	height: 35px;
+	width: 25px;
+	height: 25px;
 }
 @media (min-width: 640px) {
 	#auth_container {

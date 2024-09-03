@@ -4,10 +4,10 @@
 		<mpcontent1 ref="mpcontent1"></mpcontent1>
 		<mpdecor1></mpdecor1>
 		<mpimage1></mpimage1>
-		<mpcontent2></mpcontent2>
+		<mpcontent2 ref="mpcontent2"></mpcontent2>
 		<mpdecor2></mpdecor2>
 		<mpimage2></mpimage2>
-		<mpcontent3></mpcontent3>
+		<mpcontent3 ref="mpcontent3"></mpcontent3>
 		<mpdecor3></mpdecor3>
 	</div>
 </template>
@@ -23,6 +23,7 @@ import main_page_decor3 from "@/components/main_page/main_page_decor3.vue";
 import main_page_imagecontainer1 from "@/components/main_page/main_page_imagecontainer1.vue";
 import main_page_imagecontainer2 from "@/components/main_page/main_page_imagecontainer2.vue";
 export default {
+	observer: null,
 	components: {
 		mptitle: main_page_title,
 		mpcontent1: main_page_content1,
@@ -35,101 +36,29 @@ export default {
 		mpimage2: main_page_imagecontainer2,
 	},
 	mounted() {
+		this.observer = new ResizeObserver(this.updateStyle);
+		console.log(this.$refs.mpcontent1);
 		// Убрать этот код - обновление декоративных элементов будет при
 		// помощи ResizeObserver. Этот код пойдет в функцию updateStyle.
 		// Посмотри, как добавлять несколько объектов в observer
-		let inner_content1_height = this.$refs.mpcontent1.$el.offsetHeight;
-		this.$refs.mpcontent1.$el.children[1].style.height = `${inner_content1_height}px`;
+	},
+	methods: {
+		updateStyle(entries) {
+			// for (let entry in entries) {
+			// 	console.log(entry);
+			// }
+		},
+	},
+	beforeDestroy() {
+		this.observer.disconnect();
 	},
 };
 </script>
 
-<style>
-/* для устройств с тачпадом 
-Нужно раскидать по компонентам - слишком много кода
-*/
-@media (hover: none) {
-	@media (max-width: 320px) {
-		#container {
-			flex-direction: column;
-			font-size: 0.55em;
-
-			> #home_title {
-				margin-top: 10px;
-				> h1 {
-					text-align: center;
-				}
-				> hr {
-					margin: 5px 15px 15px 15px;
-					border-color: var(--ash_grey);
-				}
-			}
-
-			> #home_content1 {
-				position: relative;
-				width: 95%;
-				align-self: center;
-				line-height: 10px;
-				padding: 10px 8px 8px 5px;
-				margin-bottom: 10px;
-
-				> #inner_content1 {
-					padding: 15px 5px 10px 5px;
-					border: 2px solid var(--white);
-					border-radius: 4px;
-				}
-				> #decor1 {
-					position: absolute;
-					top: 0;
-					left: 0;
-					z-index: -1;
-					border-radius: 4px;
-					width: 100%;
-					background-color: var(--light_green);
-				}
-			}
-
-			> #mpdecor1 {
-				display: none;
-			}
-
-			> #mpimage1 {
-				margin-left: 3%;
-				margin-bottom: 10px;
-				> img {
-					width: 65%;
-				}
-			}
-
-			> #home_content2 {
-				position: relative;
-				z-index: -1;
-				top: -100px;
-				width: 60%;
-				height: 240px;
-				align-self: flex-end;
-				line-height: 10px;
-				padding: 110px 8px 8px 5px;
-				margin: 0 8px 10px 0;
-				border-radius: 4px;
-				background-color: var(--light_green);
-				> #inner_content2 {
-					padding: 15px 5px 10px 5px;
-					border: 2px solid var(--white);
-					border-radius: 4px;
-				}
-			}
-
-			> #mpdecor2 {
-				position: relative;
-				top: -100px;
-				background-color: aqua;
-				height: 100px;
-			}
-		}
-	}
+<style scoped>
+#container {
+	overflow: visible;
 }
-
 @media (pointer: corse) or (pointer: fine) {
 }
 /* 

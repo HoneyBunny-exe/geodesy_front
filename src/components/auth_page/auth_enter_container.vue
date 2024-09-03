@@ -40,6 +40,7 @@ import axios from "axios";
 import auth_input from "./auth_input.vue";
 import general_button from "../_general/general_button.vue";
 export default {
+	inject: ["pushToPopup"],
 	components: {
 		ainput: auth_input,
 		gbutton: general_button,
@@ -88,14 +89,13 @@ export default {
 
 					// test
 					console.log(this.$store.getters.getAll);
+
+					this.pushToPopup("login_profile");
 				});
 			} catch (error) {
 				console.log(error);
 			}
 		},
-	},
-	mounted() {
-		document.getElementsByClassName("");
 	},
 };
 </script>

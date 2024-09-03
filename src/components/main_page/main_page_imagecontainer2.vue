@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div id="mpimage">
 		<img src="../../assets/images/main_page/main_page_photo2.png" />
 	</div>
 </template>
@@ -8,4 +8,17 @@
 export default {};
 </script>
 
-<style></style>
+<style scoped>
+@media (hover: none) {
+	@media (max-width: 768px) {
+		#mpimage {
+			width: 62%;
+			margin-top: 45px;
+			align-self: flex-end;
+			> img {
+				width: 100%;
+			}
+		}
+	}
+}
+</style>

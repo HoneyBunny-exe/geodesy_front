@@ -1,16 +1,23 @@
 <template>
 	<div>
-		<pintro :email="userData.email"></pintro>
-		<pudata
+		<pintro
+			:email="userData.email"
 			:userData="{
 				first_name: this.userData.first_name,
 				second_name: this.userData.second_name,
 				third_name: this.userData.third_name,
 				sex: this.userData.sex,
 			}"
-		></pudata>
+		></pintro>
+		<!-- <pudata
+			:userData="{
+				first_name: this.userData.first_name,
+				second_name: this.userData.second_name,
+				third_name: this.userData.third_name,
+				sex: this.userData.sex,
+			}"
+		></pudata> -->
 		<pslist></pslist>
-		
 	</div>
 </template>
 

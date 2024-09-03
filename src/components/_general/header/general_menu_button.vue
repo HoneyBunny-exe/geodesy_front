@@ -21,19 +21,21 @@ export default {
 
 <style scoped>
 #container {
-	display: flex;
-	justify-content: center;
+	height: 100%;
+	aspect-ratio: 1/1;
 }
-@media (min-width: 1024px) {
+@media (hover: none) {
 	img {
+		height: 45%;
+		width: 45%;
+		margin: auto;
+	}
+	p {
 		display: none;
 	}
 }
-@media (max-width: 1024px) {
+@media (pointer: corse) or (pointer: fine) {
 	img {
-		width: 23px;
-	}
-	p {
 		display: none;
 	}
 }

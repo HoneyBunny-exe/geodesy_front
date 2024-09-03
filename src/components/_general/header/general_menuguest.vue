@@ -29,6 +29,7 @@ export default {
 			this.$router.push("/home");
 		},
 		mapClick() {
+			console.log("general_menuguest: mapClick was activated");
 			this.$router.push("/map");
 		},
 		logginClick() {

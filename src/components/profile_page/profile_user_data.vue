@@ -1,3 +1,4 @@
+<!-- Пока не использую -->
 <template>
 	<div id="container">
 		<p>Имя: {{ this.userData.first_name }}</p>
@@ -19,3 +20,4 @@ export default {
 </script>
 
 <style></style>
+<!-- Пока не использую -->

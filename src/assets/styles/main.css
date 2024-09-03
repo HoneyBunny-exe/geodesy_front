@@ -10,6 +10,9 @@
 	--white: #fff;
 	--ash_grey: #d9d9d9;
 	--debug: red;
+
+	--popup_animation_time: 0.5s;
+	--popup_height: 50px;
 }
 *,
 *::before,
@@ -57,6 +60,18 @@ auth_registration_view
 	font: inherit;
 }
 
+/* Применяется к <gbutton> в компоненте
+profile_intro.vue
+*/
+.profile_change_personal_data_button {
+	align-self: center;
+	background-color: var(--ash_grey);
+	height: 30px;
+	border: none;
+	border-radius: 4px;
+	font-size: 0.9em;
+}
+
 /* Применяется к <ainput> в компоненте
 auth_registration_apply,
 auth_confirm_apply 
@@ -76,4 +91,8 @@ auth_confirm_apply
 		border-radius: 10px;
 		border: 2px solid var(--ash_grey);
 	}
+}
+
+#app {
+	min-height: 100vh;
 }
