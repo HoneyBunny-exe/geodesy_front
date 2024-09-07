@@ -1,7 +1,7 @@
 <template>
-	<div>
+	<div id="profile_view">
 		<pintro
-			:email="userData.email"
+			:email="this.userData.email"
 			:userData="{
 				first_name: this.userData.first_name,
 				second_name: this.userData.second_name,
@@ -9,14 +9,6 @@
 				sex: this.userData.sex,
 			}"
 		></pintro>
-		<!-- <pudata
-			:userData="{
-				first_name: this.userData.first_name,
-				second_name: this.userData.second_name,
-				third_name: this.userData.third_name,
-				sex: this.userData.sex,
-			}"
-		></pudata> -->
 		<pslist></pslist>
 	</div>
 </template>
@@ -24,7 +16,6 @@
 <script>
 import axios from "axios";
 import profile_intro from "@/components/profile_page/profile_intro.vue";
-import profile_user_data from "@/components/profile_page/profile_user_data.vue";
 import profile_smart_list from "@/components/profile_page/profile_smart_list.vue";
 export default {
 	data() {
@@ -34,7 +25,6 @@ export default {
 	},
 	components: {
 		pintro: profile_intro,
-		pudata: profile_user_data,
 		pslist: profile_smart_list,
 	},
 	methods: {

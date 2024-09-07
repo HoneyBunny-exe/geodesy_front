@@ -1,9 +1,9 @@
 <template>
 	<div>
-		<dialog>
-			<pmfilter></pmfilter>
-		</dialog>
-		<button>кнопка вызова модального окна</button>
+		<gmwindow>
+			<pfilter></pfilter>
+		</gmwindow>
+		<gbutton>кнопка вызова модального окна с фильтром и сортировкой</gbutton>
 
 		<select @change="_updateDataSelectHelper">
 			<option value="datetime_creation">Дата создания</option>
@@ -16,10 +16,14 @@
 </template>
 
 <script>
-import profile_modal_filter from "./profile_modal_filter.vue";
+import profile_filter from "./profile_filter.vue";
+import general_modal_window from "@/components/_general/general_modal_window.vue";
+import general_button from "@/components/_general/general_button.vue";
 export default {
 	components: {
-		pmfilter: profile_modal_filter,
+		pfilter: profile_filter,
+		gmwindow: general_modal_window,
+		gbutton: general_button,
 	},
 	data() {
 		return {

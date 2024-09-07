@@ -1,6 +1,6 @@
 <template>
 	<div class="popup_content">
-		<p>Данные профиля изменены</p>
+		<p>Данные для входа успешно изменены</p>
 	</div>
 </template>
 <style scoped>

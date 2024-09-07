@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import { Transition } from "vue";
 import general_menu from "./general_menu.vue";
 import general_menuguest from "./general_menuguest.vue";
 

@@ -13,6 +13,9 @@
 
 	--popup_animation_time: 0.5s;
 	--popup_height: 50px;
+
+	--modal_animation_time: 0.3s;
+	--modal_animation_shift: 100px;
 }
 *,
 *::before,
@@ -25,6 +28,7 @@
 /* Применяется к <ainput> в компоненте
 auth_enter_view, 
 auth_registration_view
+-- Используется в cpdi
 */
 .auth_input {
 	display: flex;
@@ -50,6 +54,7 @@ auth_registration_view
 /* Применяется к <gbutton> в компоненте 
 auth_enter_view, 
 auth_registration_view
+-- Используется в cpdi
 */
 .auth_button {
 	height: 36px;
@@ -66,31 +71,13 @@ profile_intro.vue
 .profile_change_personal_data_button {
 	align-self: center;
 	background-color: var(--ash_grey);
-	height: 30px;
 	border: none;
 	border-radius: 4px;
 	font-size: 0.9em;
-}
-
-/* Применяется к <ainput> в компоненте
-auth_registration_apply,
-auth_confirm_apply 
-*/
-.auth_input_confirm {
-	max-width: 208px;
-	margin-bottom: 15px;
-	margin-left: auto;
-	margin-right: auto;
-	input {
-		letter-spacing: 3px;
-		text-align: center;
-		width: 100%;
-		padding-left: 10px;
-		font-size: 1.5rem;
-		height: 48px;
-		border-radius: 10px;
-		border: 2px solid var(--ash_grey);
-	}
+	margin-right: 0;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	/* margin-right: 10px; */
 }
 
 #app {

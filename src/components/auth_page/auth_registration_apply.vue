@@ -20,6 +20,7 @@ import axios from "axios";
 import apply_input from "./auth_input.vue";
 import general_button from "../_general/general_button.vue";
 export default {
+	inject: ["pushToPopup"],
 	data() {
 		return {
 			confirmCode: "",
@@ -55,6 +56,7 @@ export default {
 						result.data.refresh_token
 					);
 					this.$store.commit("deleteTFAToken");
+					this.pushToPopup("")
 				});
 			} catch (error) {
 				console.log(error);

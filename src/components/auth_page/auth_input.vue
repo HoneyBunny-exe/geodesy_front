@@ -1,7 +1,7 @@
+<!-- Изменить название - компонент нужен за пределами AuthView -->
 <template>
 	<div id="auth_input_container">
 		<label>{{ underText }}</label>
-		<slot name="visibleButton"></slot>
 		<input
 			:placeholder="placeholder"
 			v-model="value"

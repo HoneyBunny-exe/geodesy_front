@@ -4,16 +4,13 @@
 		<p class="title_small">
 			На указанную вами почту пришел код-подтверждение
 		</p>
-		<ainput
-			class="auth_input_confirm"
-			:confident="`auto`"
+		<gainput
 			:parent-value="confirmCode"
-			@confirmCodeUpdateEvent="confirmCodeUpdate"
-			:event-name="input1"
-		></ainput>
+			@updateInputDataEvent="confirmCodeUpdate"
+		></gainput>
 		<gbutton
 			class="auth_button"
-			:text="this.$constants.STRING.SEND"
+			:text="`Отправить`"
 			@click="sendData"
 		></gbutton>
 	</div>
@@ -21,18 +18,17 @@
 
 <script>
 import axios from "axios";
-import auth_input from "./auth_input.vue";
+import general_apply_input from "../_general/general_apply_input.vue";
 import general_button from "../_general/general_button.vue";
 export default {
+	inject: ["pushToPopup"],
 	data() {
 		return {
 			confirmCode: "",
-
-			input1: "confirmCodeUpdateEvent",
 		};
 	},
 	components: {
-		ainput: auth_input,
+		gainput: general_apply_input,
 		gbutton: general_button,
 	},
 	methods: {
@@ -53,6 +49,7 @@ export default {
 					console.log(this.$store.getters.getAll);
 					this.$emit("goToEvent", "aecontainer 3");
 					console.log("(Не бек) Пароль получилось поменять");
+					this.pushToPopup("change_auth_data");
 				});
 			} catch (error) {
 				console.log(error);

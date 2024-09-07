@@ -2,13 +2,13 @@
 	<Transition @enter="onEnter" name="show">
 		<div v-if="isShown" id="container">
 			<component :is="componentName" :key="componentName"></component>
-			<!-- <div style="background-color: aqua; height: 40px"></div> -->
 		</div>
 	</Transition>
 </template>
 
 <script>
 import bad_connection from "../popup_components/bad_connection.vue";
+import change_auth_data from "../popup_components/change_auth_data.vue";
 import change_profile_data from "../popup_components/change_profile_data.vue";
 import create_profile from "../popup_components/create_profile.vue";
 import incorrect_field from "../popup_components/incorrect_field.vue";
@@ -20,6 +20,7 @@ export default {
 		create_profile,
 		incorrect_field,
 		login_profile,
+		change_auth_data,
 	},
 	data() {
 		return {
@@ -52,7 +53,7 @@ export default {
 				this.isShown = true;
 				this.timerId = setTimeout(() => {
 					this.isShown = false;
-					this.componentName = "no_component";
+					this.componentName = "no_component"; // Исправить - пропс нельзя изменить
 				}, this.showTime);
 			}
 		},
