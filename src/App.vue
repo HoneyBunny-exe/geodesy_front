@@ -2,7 +2,10 @@
 	<gheader></gheader>
 	<RouterView />
 	<div id="gap"></div>
-	<popup :component-name="popupComponentName"></popup>
+	<popup
+		:component-name="popupComponentName"
+		@changeComponentNameEvent="change"
+	></popup>
 </template>
 
 <script>
@@ -24,6 +27,9 @@ export default {
 			this.popupComponentName = componentName;
 			console.log(this.popupComponentName);
 			console.log("App.vue: pushToPopup was called");
+		},
+		change() {
+			this.popupComponentName = "no_component";
 		},
 	},
 	provide() {

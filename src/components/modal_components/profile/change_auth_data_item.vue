@@ -4,7 +4,6 @@
 			<p id="personal_data_item_header">{{ `Изменение данных` }}</p>
 			<ginput
 				:placeholder="createPlaceholder()"
-				class="auth_input"
 				:parentValue="text"
 				@updateInputDataEvent="textUpdate"
 			></ginput>

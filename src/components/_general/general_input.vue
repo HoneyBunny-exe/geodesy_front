@@ -1,8 +1,8 @@
 <template>
-	<div id="input_confirm">
-		<label>{{ underText }}</label>
+	<div id="general_input">
 		<slot name="visibleButton"></slot>
 		<input :placeholder="placeholder" v-model="value" @input="update" />
+		<label>{{ underText }}</label>
 	</div>
 </template>
 
@@ -35,4 +35,21 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+#general_input {
+	display: flex;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	flex-direction: column;
+
+	input {
+		width: 100%;
+		padding-left: 10px;
+		font-size: 1.1rem;
+		height: 36px;
+		border-radius: 10px;
+		border: 2px solid var(--ash_grey);
+		max-width: 400px;
+	}
+}
+</style>

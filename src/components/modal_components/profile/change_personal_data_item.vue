@@ -10,7 +10,6 @@
 		<ginput
 			v-else
 			:placeholder="createPlaceholder()"
-			class="auth_input"
 			:parentValue="text"
 			@updateInputDataEvent="textUpdate"
 		></ginput>
@@ -86,6 +85,7 @@ export default {
 			height: 36px;
 			border-radius: 10px;
 			border: 2px solid var(--ash_grey);
+			margin-bottom: 5px;
 		}
 	}
 }

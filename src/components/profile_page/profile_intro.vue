@@ -74,6 +74,7 @@ import general_modal_window from "../_general/general_modal_window.vue";
 import change_personal_data_item from "../modal_components/profile/change_personal_data_item.vue";
 import change_auth_data_item from "../modal_components/profile/change_auth_data_item.vue";
 export default {
+	inject: ["pushToPopup"],
 	data(){
 		return{
 			isModalShown: false,
@@ -129,7 +130,7 @@ export default {
 					console.log(error);
 				});
 				this.isModalShown = false;
-
+				this.pushToPopup("change_profile_data");
 			}
 			else if(["email_step1", "password_step1"].indexOf(data.data_item) != -1){
 				console.log(`profile_intro: destroyModal: third condition (email/password: step 1) was called`);
@@ -169,6 +170,7 @@ export default {
 					}
 				}).then((response) => {
 					console.log(`complete!`);
+					this.pushToPopup("change_auth_data");
 				}).catch((error) => {
 					console.log(error);
 				})

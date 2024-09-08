@@ -53,7 +53,7 @@ export default {
 				this.isShown = true;
 				this.timerId = setTimeout(() => {
 					this.isShown = false;
-					this.componentName = "no_component"; // Исправить - пропс нельзя изменить
+					this.$emit("changeComponentNameEvent") // Исправить - пропс нельзя изменить
 				}, this.showTime);
 			}
 		},

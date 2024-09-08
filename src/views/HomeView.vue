@@ -1,6 +1,6 @@
 <template>
 	<div id="container">
-		<mptitle></mptitle>
+		<mptitle :title="`Государственная геодезическая сеть`"></mptitle>
 		<mpcontent1 ref="mpcontent1"></mpcontent1>
 		<mpdecor1></mpdecor1>
 		<mpimage1></mpimage1>
@@ -61,20 +61,4 @@ export default {
 }
 @media (pointer: corse) or (pointer: fine) {
 }
-/* 
-@media (max-width: 320px) {
-	#container {
-		display: flex;
-	}
-}
-@media (min-width: 320px) and (max-width: 480px) {
-}
-@media (min-width: 480px) and (max-width: 768px) {
-}
-@media (min-width: 768px) and (max-width: 1024px) {
-}
-@media (min-width: 1024px) and (max-width: 1280px) {
-}
-@media (min-width: 1280px) and (max-width: 1400px) {
-} */
 </style>

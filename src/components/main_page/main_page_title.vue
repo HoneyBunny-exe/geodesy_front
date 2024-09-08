@@ -1,12 +1,19 @@
 <template>
 	<div id="home_title">
-		<h1>Государственная геодезическая сеть</h1>
+		<h1>{{ title }}</h1>
 		<hr />
 	</div>
 </template>
 
 <script>
-export default {};
+export default {
+	props: {
+		title: {
+			type: String,
+			required: true,
+		},
+	},
+};
 </script>
 
 <style scoped>
