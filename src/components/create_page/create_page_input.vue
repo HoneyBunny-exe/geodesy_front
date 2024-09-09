@@ -75,28 +75,38 @@ export default {
 	margin-top: 5px;
 	margin-bottom: 5px;
 	flex-direction: column;
+	width: 100%;
 
 	> :slotted(img) {
 		margin-bottom: 2px;
 		height: 16px;
+		margin-right: 5px;
+		justify-self: end;
 	}
 
 	> #overText {
+		margin-left: 5px;
 		grid-area: A;
+		font-size: 13px;
 	}
 	input {
 		grid-area: C;
 		width: 100%;
-		padding-left: 10px;
 		font-size: 1.1rem;
-		height: 36px;
+		min-height: 36px;
 		border-radius: 10px;
 		border: 2px solid var(--ash_grey);
-		max-width: 400px;
+		font-size: 14px;
+		align-self: center;
+	}
+	input:focus {
+		border: var(--light_green) solid 2px;
 	}
 
 	> #underText {
+		margin-left: 5px;
 		grid-area: D;
+		font-size: 12px;
 	}
 }
 </style>

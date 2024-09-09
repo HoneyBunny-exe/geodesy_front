@@ -117,7 +117,7 @@ export default {
 			try {
 				let response = await axios({
 					method: "post",
-					url: "http://127.0.0.1:8000/api/v1/registration/",
+					url: "http://127.0.0.1:8001/api/v1/registration/",
 					data: {
 						first_name: this.firstName,
 						second_name: this.secondName,

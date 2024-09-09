@@ -71,7 +71,7 @@ export default {
 			try {
 				await axios({
 					method: "post",
-					url: "http://127.0.0.1:8000/api/v1/auth/",
+					url: "http://127.0.0.1:8001/api/v1/auth/",
 					data: {
 						email: this.email,
 						password: this.password,

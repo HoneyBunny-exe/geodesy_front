@@ -32,7 +32,7 @@ export default {
 			try {
 				let uData = await axios({
 					method: "get",
-					url: "http://127.0.0.1:8000/api/v1/info/user/",
+					url: "http://127.0.0.1:8001/api/v1/info/user/",
 					headers: {
 						Authorization: this.$store.getters.getAccessToken,
 					},

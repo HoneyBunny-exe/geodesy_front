@@ -37,7 +37,7 @@ export default {
 			try {
 				this.cardList = await axios({
 					method: "post",
-					url: "http://127.0.0.1:8000/api/v1/card/info/",
+					url: "http://127.0.0.1:8001/api/v1/card/info/",
 					headers: {
 						Authorization: this.$store.getters.getAccessToken,
 					},

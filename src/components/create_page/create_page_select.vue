@@ -2,7 +2,11 @@
 	<div id="create_input" ref="create_input">
 		<label id="overText">{{ overText }}</label>
 		<slot name="visibleButton"></slot>
-		<select :placeholder="placeholder" v-model="value"></select>
+		<select :name="selectName" v-model="value">
+			<option v-for="item in options" :value="item" :key="item">
+				{{ item }}
+			</option>
+		</select>
 		<label id="underText">{{ underText }}</label>
 	</div>
 </template>
@@ -27,9 +31,13 @@ export default {
 			type: String,
 			required: true,
 		},
-		inputAttributes: {
-			type: Object,
-			requied: false,
+		options: {
+			type: Array,
+			required: true,
+		},
+		selectName: {
+			type: String,
+			required: true,
 		},
 	},
 	methods: {
@@ -41,26 +49,6 @@ export default {
 		// Убирает стили ошибки
 		stopError() {},
 	},
-	// mounted() {
-	// 	// Добавляем атрибуты к input
-	// 	this.$nextTick(() => {
-	// 		// находим input
-	// 		console.log(Array.from(this.$refs.create_input.childNodes));
-	// 		let node = Array.from(this.$refs.create_input.childNodes).find(
-	// 			(element) => {
-	// 				console.log(element.nodeName.toLowerCase());
-	// 				return element.nodeName.toLowerCase() === "input";
-	// 			}
-	// 		);
-	// 		console.log(node);
-	// 		// добавляем атрибуты
-	// 		for (let key in this.inputAttributes) {
-	// 			node.setAttribute(key, this.inputAttributes[key]);
-	// 		}
-
-	// 		console.log(node.attributes);
-	// 	});
-	// },
 };
 </script>
 
@@ -71,28 +59,43 @@ export default {
 	margin-top: 5px;
 	margin-bottom: 5px;
 	flex-direction: column;
+	width: 100%;
 
 	> :slotted(img) {
 		margin-bottom: 2px;
 		height: 16px;
+		margin-right: 5px;
+		justify-self: end;
 	}
 
 	> #overText {
+		margin-left: 5px;
 		grid-area: A;
+		font-size: 13px;
 	}
 	select {
 		grid-area: C;
 		width: 100%;
 		padding-left: 10px;
-		font-size: 1.1rem;
-		height: 36px;
+		font-size: 14px;
+		min-height: 36px;
 		border-radius: 10px;
 		border: 2px solid var(--ash_grey);
-		max-width: 400px;
+
+		> option {
+			width: inherit;
+		}
+	}
+	> select:focus,
+	select:hover,
+	select:focus-within {
+		border: var(--light_green) solid 2px;
 	}
 
 	> #underText {
+		margin-left: 5px;
 		grid-area: D;
+		font-size: 12px;
 	}
 }
 </style>

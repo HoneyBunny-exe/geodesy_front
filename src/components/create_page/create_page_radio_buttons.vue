@@ -2,11 +2,12 @@
 	<div id="create_input" ref="create_input">
 		<label id="overText">{{ overText }}</label>
 		<slot name="visibleButton"></slot>
-		<div id="radiogroup_wrapper">
+		<div id="radiogroup_wrapper" ref="radiogroup_wrapper">
 			<div
 				v-for="(value, key) in radioButtons.data"
 				:key="key"
 				class="radio_wrapper"
+				:ref="key"
 			>
 				<gbutton :text="value" @click="choseChecked(key)"></gbutton>
 			</div>
@@ -24,6 +25,7 @@ export default {
 	data() {
 		return {
 			value: this.parentValue,
+			currentButtonRefName: "",
 		};
 	},
 	props: {
@@ -40,7 +42,7 @@ export default {
 			required: true,
 		},
 		// указываем кнопки
-		// radioButtons: {groupName: String, keys: Array, values: Array};
+		// radioButtons: {groupName: String, data: Object};
 		radioButtons: {
 			type: Object,
 			requied: false,
@@ -57,8 +59,16 @@ export default {
 		choseChecked(key) {
 			console.log(`choseChecked was called with key=${key}`);
 
-			// Получить все кнопки, найти по ключу нажатую, навесить на нее стили, обнулить стили остальных
+			if (this.currentButtonRefName !== "") {
+				this.$refs[this.currentButtonRefName][0].classList.remove(
+					"button_pressed"
+				);
+			}
+			this.currentButtonRefName = key;
 
+			this.$refs[this.currentButtonRefName][0].classList.add(
+				"button_pressed"
+			);
 			this.value = key;
 			this.update();
 		},
@@ -73,40 +83,60 @@ export default {
 	margin-top: 5px;
 	margin-bottom: 5px;
 	flex-direction: column;
+	width: 100%;
 
 	> :slotted(img) {
 		margin-bottom: 2px;
 		height: 16px;
+		margin-right: 5px;
+		justify-self: end;
 	}
 
 	> #overText {
+		margin-left: 5px;
 		grid-area: A;
+		font-size: 13px;
 	}
 	#radiogroup_wrapper {
 		display: flex;
+		justify-content: space-evenly;
 		grid-area: C;
 		width: 100%;
-		padding-left: 10px;
-		font-size: 1.1rem;
-		height: 36px;
+		min-height: 36px;
 		border-radius: 10px;
 		border: 2px solid var(--ash_grey);
-		max-width: 400px;
 
 		> .radio_wrapper {
-			> label {
-				cursor: pointer;
-				padding: 10px;
-				border: 1px solid #ccc;
-				border-radius: 4px;
-				margin: 5px 0;
-				transition: background-color 0.3s, border-color 0.3s;
+			display: flex;
+			align-items: center;
+			min-height: 36px;
+			> button {
+				font-size: 12px;
+				margin-left: 2px;
+				margin-right: 2px;
+				background-color: var(--white);
+				border-radius: 10px;
+				border: none;
+				height: 32px;
+				text-decoration: underline;
+			}
+			> button:focus {
+				outline: var(--light_green) solid 2px;
 			}
 		}
 	}
 
 	> #underText {
+		margin-left: 5px;
 		grid-area: D;
+		font-size: 12px;
+	}
+
+	.button_pressed {
+		> button {
+			background-color: var(--light_green) !important;
+			color: red;
+		}
 	}
 }
 </style>

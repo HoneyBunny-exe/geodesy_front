@@ -55,7 +55,7 @@ export default {
 			try {
 				let response = await axios({
 					method: "post",
-					url: "http://127.0.0.1:8000/api/v1/auth/forgotten/password/",
+					url: "http://127.0.0.1:8001/api/v1/auth/forgotten/password/",
 					data: {
 						email: this.email,
 						password: this.newPassword,
