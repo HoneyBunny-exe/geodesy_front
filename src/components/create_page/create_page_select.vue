@@ -2,7 +2,7 @@
 	<div id="create_input" ref="create_input">
 		<label id="overText">{{ overText }}</label>
 		<slot name="visibleButton"></slot>
-		<select :name="selectName" v-model="value">
+		<select :name="selectName" @change="update($event.target.value)">
 			<option v-for="item in options" :value="item" :key="item">
 				{{ item }}
 			</option>
@@ -13,11 +13,6 @@
 
 <script>
 export default {
-	data() {
-		return {
-			value: this.parentValue,
-		};
-	},
 	props: {
 		overText: {
 			type: String,
@@ -26,10 +21,6 @@ export default {
 		underText: {
 			type: String,
 			required: false,
-		},
-		parentValue: {
-			type: String,
-			required: true,
 		},
 		options: {
 			type: Array,
@@ -41,8 +32,9 @@ export default {
 		},
 	},
 	methods: {
-		update() {
-			this.$emit("updateInputDataEvent", this.value);
+		update(value) {
+			console.log(value);
+			this.$emit("updateInputDataEvent", value);
 		},
 		// Подсвечивает элемент для обозначения ошибки
 		doError() {},

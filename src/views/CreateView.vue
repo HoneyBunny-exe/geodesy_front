@@ -8,6 +8,7 @@
 			:parentValue="execute_date"
 			:overText="`Дата проведения работ`"
 			:underText="`test`"
+			@updateInputDataEvent="execute_date_update"
 		>
 			<template #visibleButton>
 				<img src="@/assets/images/create_page/question.svg" />
@@ -16,9 +17,9 @@
 		<cpselect
 			:overText="`Субъект Российской Федерации`"
 			:underText="`test`"
-			:parentValue="federal_subject"
 			:options="subjects"
 			:selectName="`federal_subjects`"
+			@updateInputDataEvent="federal_subject_update"
 		>
 			<template #visibleButton>
 				<img
@@ -37,12 +38,7 @@
 					max: `90`,
 					step: '0.000001',
 				}"
-				@updateInputDataEvent="
-					(newValue) => {
-						console.log(`newValue: ${newValue}`);
-						latitude = newValue;
-					}
-				"
+				@updateInputDataEvent="latitude_update"
 			>
 				<template #visibleButton>
 					<img src="@/assets/images/create_page/question.svg" />
@@ -58,12 +54,7 @@
 					max: `180`,
 					step: '0.000001',
 				}"
-				@updateInputDataEvent="
-					(newValue) => {
-						console.log(`newValue: ${newValue}`);
-						longitude = newValue;
-					}
-				"
+				@updateInputDataEvent="longitude_update"
 			>
 				<template #visibleButton>
 					<img src="@/assets/images/create_page/question.svg" />
@@ -79,6 +70,7 @@
 				type: `number`,
 				step: `0.001`,
 			}"
+			@updateInputDataEvent="sign_height_above_ground_level_update"
 		>
 			<template #visibleButton>
 				<img src="@/assets/images/create_page/question.svg" />
@@ -91,36 +83,34 @@
 			:inputAttributes="{
 				type: `number`,
 				min: `0`,
+				step: `0.01`,
 			}"
+			@updateInputDataEvent="sign_height_update"
 		>
 			<template #visibleButton>
 				<img src="@/assets/images/create_page/question.svg" />
 			</template>
 		</cpinput>
-		<cpinput
+		<cpfinput
 			:overText="`Фотография внешнего обрамления`"
 			:underText="`test`"
 			:parentValue="buffer1"
-			:inputAttributes="{
-				type: `file`,
-			}"
+			@updateInputDataEvent="buffer1_update"
 		>
 			<template #visibleButton>
 				<img src="@/assets/images/create_page/question.svg" />
 			</template>
-		</cpinput>
-		<cpinput
+		</cpfinput>
+		<cpfinput
 			:overText="`Фотография марки центра`"
 			:underText="`test`"
 			:parentValue="buffer2"
-			:inputAttributes="{
-				type: `file`,
-			}"
+			@updateInputDataEvent="buffer2_update"
 		>
 			<template #visibleButton>
 				<img src="@/assets/images/create_page/question.svg" />
 			</template>
-		</cpinput>
+		</cpfinput>
 		<cprbuttons
 			:class="`type-of-sign-unique`"
 			:overText="`Тип знака`"
@@ -136,7 +126,7 @@
 					no_sign: 'Отсутствует',
 				},
 			}"
-			@updateInputDataEvent="(newValue) => (type_of_sign = newValue)"
+			@updateInputDataEvent="type_of_sign_update"
 		>
 			<template #visibleButton>
 				<img src="@/assets/images/create_page/question.svg" />
@@ -154,6 +144,11 @@
 						wood: 'Деревянный',
 					},
 				}"
+				@updateInputDataEvent="
+					(newValue) => {
+						properties.material = newValue;
+					}
+				"
 			>
 				<template #visibleButton>
 					<img src="@/assets/images/create_page/question.svg" />
@@ -170,6 +165,11 @@
 						trihedron: 'Трехгранник',
 					},
 				}"
+				@updateInputDataEvent="
+					(newValue) => {
+						properties.geometry = newValue;
+					}
+				"
 			>
 				<template #visibleButton>
 					<img src="@/assets/images/create_page/question.svg" />
@@ -189,6 +189,11 @@
 						complex: 'Сложный',
 					},
 				}"
+				@updateInputDataEvent="
+					(newValue) => {
+						properties.type = newValue;
+					}
+				"
 			>
 				<template #visibleButton>
 					<img src="@/assets/images/create_page/question.svg" />
@@ -208,6 +213,11 @@
 						wood: 'Деревянный',
 					},
 				}"
+				@updateInputDataEvent="
+					(newValue) => {
+						properties.material = newValue;
+					}
+				"
 			>
 				<template #visibleButton>
 					<img src="@/assets/images/create_page/question.svg" />
@@ -224,6 +234,11 @@
 						trihedron: 'Трехгранник',
 					},
 				}"
+				@updateInputDataEvent="
+					(newValue) => {
+						properties.geometry = newValue;
+					}
+				"
 			>
 				<template #visibleButton>
 					<img src="@/assets/images/create_page/question.svg" />
@@ -244,6 +259,11 @@
 						brick: 'Кирпичный',
 					},
 				}"
+				@updateInputDataEvent="
+					(newValue) => {
+						properties.pillar = newValue;
+					}
+				"
 			>
 				<template #visibleButton>
 					<img src="@/assets/images/create_page/question.svg" />
@@ -262,6 +282,11 @@
 					unsaved: 'Не сохранился',
 				},
 			}"
+			@updateInputDataEvent="
+				(newValue) => {
+					monolith_one = newValue;
+				}
+			"
 		>
 			<template #visibleButton>
 				<img src="@/assets/images/create_page/question.svg" />
@@ -279,6 +304,11 @@
 					uncovered: 'Вскрывался',
 				},
 			}"
+			@updateInputDataEvent="
+				(newValue) => {
+					monolith_two = newValue;
+				}
+			"
 		>
 			<template #visibleButton>
 				<img src="@/assets/images/create_page/question.svg" />
@@ -296,6 +326,11 @@
 					uncovered: 'Вскрывался',
 				},
 			}"
+			@updateInputDataEvent="
+				(newValue) => {
+					monolith_three_and_four = newValue;
+				}
+			"
 		>
 			<template #visibleButton>
 				<img src="@/assets/images/create_page/question.svg" />
@@ -313,6 +348,11 @@
 					unsaved: 'Не сохранился',
 				},
 			}"
+			@updateInputDataEvent="
+				(newValue) => {
+					outdoor_sign = newValue;
+				}
+			"
 		>
 			<template #visibleButton>
 				<img src="@/assets/images/create_page/question.svg" />
@@ -330,6 +370,11 @@
 					unsaved: 'Не сохранился',
 				},
 			}"
+			@updateInputDataEvent="
+				(newValue) => {
+					ORP_one = newValue;
+				}
+			"
 		>
 			<template #visibleButton>
 				<img src="@/assets/images/create_page/question.svg" />
@@ -347,6 +392,11 @@
 					unsaved: 'Не сохранился',
 				},
 			}"
+			@updateInputDataEvent="
+				(newValue) => {
+					ORP_two = newValue;
+				}
+			"
 		>
 			<template #visibleButton>
 				<img src="@/assets/images/create_page/question.svg" />
@@ -364,6 +414,11 @@
 					unreadable: 'Не читается',
 				},
 			}"
+			@updateInputDataEvent="
+				(newValue) => {
+					trench = newValue;
+				}
+			"
 		>
 			<template #visibleButton>
 				<img src="@/assets/images/create_page/question.svg" />
@@ -382,12 +437,21 @@
 					impossible: 'Невозможно',
 				},
 			}"
+			@updateInputDataEvent="
+				(newValue) => {
+					satellite_surveillance = newValue;
+				}
+			"
 		>
 			<template #visibleButton>
 				<img src="@/assets/images/create_page/question.svg" />
 			</template>
 		</cprbuttons>
-		<gbutton :text="`Отправить`" class="send_button"></gbutton>
+		<gbutton
+			:text="`Отправить`"
+			class="send_button"
+			@click="send"
+		></gbutton>
 	</div>
 </template>
 
@@ -396,6 +460,7 @@ import axios from "axios";
 import create_title from "@/components/create_page/create_title.vue";
 import create_page_input from "@/components/create_page/create_page_input.vue";
 import create_page_select from "@/components/create_page/create_page_select.vue";
+import create_page_file_input from "@/components/create_page/create_page_file_input.vue";
 import create_page_radio_buttons from "@/components/create_page/create_page_radio_buttons.vue";
 import general_button from "@/components/_general/general_button.vue";
 export default {
@@ -514,6 +579,7 @@ export default {
 		ctitle: create_title,
 		cpinput: create_page_input,
 		cpselect: create_page_select,
+		cpfinput: create_page_file_input,
 		cprbuttons: create_page_radio_buttons,
 		gbutton: general_button,
 	},
@@ -525,8 +591,130 @@ export default {
 				headers: {
 					Authorization: this.$store.getters.getAccessToken,
 				},
-				data: {}, // указать данные
+				data: {
+					execute_date: this.execute_date,
+					federal_subject: this.federal_subject,
+					latitude: this.latitude,
+					longitude: this.longitude,
+					sign_height_above_ground_level:
+						this.sign_height_above_ground_level,
+					sign_height: this.sign_height,
+					photos: [this.buffer1, this.buffer2],
+					identification_pillar: {
+						value: this.identification_pillar,
+					},
+					type_of_sign: {
+						value: this.type_of_sign,
+						properties: this.properties, // !!! - проверить, как работает при no_sign
+					},
+					monolith_one: {
+						value: this.monolith_one,
+					},
+					monolith_two: {
+						value: this.monolith_two,
+					},
+					monolith_three_and_four: {
+						value: this.monolith_three_and_four,
+					},
+					outdoor_sign: {
+						valur: this.outdoor_sign,
+					},
+					ORP_one: {
+						value: this.ORP_one,
+					},
+					ORP_two: {
+						value: this.ORP_two,
+					},
+					trench: {
+						value: this.trench,
+					},
+					satellite_surveillance: {
+						value: this.satellite_surveillance,
+					},
+				},
 			});
+		},
+		execute_date_update(value) {
+			this.execute_date = value;
+		},
+		federal_subject_update(value) {
+			this.federal_subject = value;
+			console.log("federal_subject_update was called");
+			console.log(this.federal_subject);
+		},
+		latitude_update(value) {
+			this.latitude = value;
+		},
+		longitude_update(value) {
+			this.longitude = value;
+		},
+		sign_height_above_ground_level_update(value) {
+			this.sign_height_above_ground_level = value;
+		},
+		sign_height_update(value) {
+			this.sign_height = value;
+		},
+		type_of_sign_update(value) {
+			this.type_of_sign = value;
+			switch (value) {
+				case "pyramid": {
+					this.properties = {
+						material: "",
+						geometry: "",
+					};
+					break;
+				}
+				case "signal": {
+					this.properties = {
+						type: "",
+					};
+					break;
+				}
+				case "tripod": {
+					this.properties = {
+						material: "",
+						geometry: "",
+					};
+					break;
+				}
+				case "tur": {
+					this.properties = {
+						pillar: "",
+					};
+					break;
+				}
+				case "no_sign":
+					this.properties = {};
+			}
+		},
+
+		buffer1_update(value) {
+			let reader = new FileReader();
+			reader.readAsArrayBuffer(value);
+			console.log("buffer1Update was called");
+
+			reader.onload = () => {
+				console.log("reader.onload was called");
+				this.buffer1 = reader.result;
+				console.log(this.buffer1);
+			};
+			reader.onerror = () => {
+				throw new Error("reader.onerror was called in buffer1Update");
+			};
+		},
+		buffer2_update(value) {
+			let reader = new FileReader();
+			reader.readAsArrayBuffer(value);
+			console.log("buffer2Update was called");
+
+			reader.onload = () => {
+				console.log("reader.onload was called");
+				this.buffer2 = reader.result;
+				console.log(this.buffer2);
+			};
+			reader.onerror = () => {
+				throw new Error("reader.onerror was called in buffer2Update");
+			};
 		},
 	},
 };

@@ -2,13 +2,14 @@
 <template>
 	<div id="container">
 		<ainput
-			class="auth_input_confirm"
+			class="auth_input"
 			:confident="`auto`"
 			:parent-value="confirmCode"
 			@confirmCodeUpdateEvent="confirmCodeUpdate"
 			:event-name="input1"
 		></ainput>
 		<gbutton
+			class="auth_button"
 			:text="this.$constants.STRING.SEND"
 			@click="sendData"
 		></gbutton>
@@ -56,7 +57,7 @@ export default {
 						result.data.refresh_token
 					);
 					this.$store.commit("deleteTFAToken");
-					this.pushToPopup("")
+					this.pushToPopup("");
 				});
 			} catch (error) {
 				console.log(error);

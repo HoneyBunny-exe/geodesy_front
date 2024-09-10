@@ -38,6 +38,7 @@ export default {
 	},
 	methods: {
 		update() {
+			console.log(this.value);
 			this.$emit("updateInputDataEvent", this.value);
 		},
 		// Подсвечивает элемент для обозначения ошибки
