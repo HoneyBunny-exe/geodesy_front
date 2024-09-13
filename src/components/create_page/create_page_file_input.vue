@@ -4,7 +4,7 @@
 		<slot name="visibleButton"></slot>
 		<input
 			:placeholder="placeholder"
-			@input="update"
+			@change="update"
 			type="file"
 			ref="input"
 		/>

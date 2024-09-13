@@ -1,22 +1,21 @@
 <template>
-	<div>
-		<gmwindow>
-			<pfilter></pfilter>
+	<div id="profile_category_list">
+		<gmwindow :isShown="isShown" @sendDataEvent="destroyModal">
+			<template #default>
+				<pfilter
+					:isShownProp="isShown"
+					@updateFilterDataEvent="destroyModal"
+				></pfilter>
+			</template>
 		</gmwindow>
-		<gbutton>кнопка вызова модального окна с фильтром и сортировкой</gbutton>
+		<gbutton :text="`Сортировка`" @click="isShown = true"></gbutton>
 
-		<select @change="_updateDataSelectHelper">
-			<option value="datetime_creation">Дата создания</option>
-			<option value="datetime_inspection">Дата проверки</option>
-		</select>
-
-		<!-- По возрастанию/убыванию -->
-		<button @click="clickHandler">изменить порядок</button>
+		<gbutton :text="`Изменить порядок`"></gbutton>
 	</div>
 </template>
 
 <script>
-import profile_filter from "./profile_filter.vue";
+import profile_filter from "@/components/modal_components/profile/profile_filter.vue";
 import general_modal_window from "@/components/_general/general_modal_window.vue";
 import general_button from "@/components/_general/general_button.vue";
 export default {
@@ -27,54 +26,12 @@ export default {
 	},
 	data() {
 		return {
-			SFData: {
-				sortList: [],
-				filterList: [],
-				order: true,
-			},
+			isShown: false,
 		};
 	},
 	methods: {
-		// value: {
-		// 	   dataName: String, - какое свойство в SFData будем изменять
-		// 	   data: Object,     - непосредственно значение свойства
-		// }
-		// Обработчик событий, вызываемых дочерними компонентами
-		updateData(value) {
-			switch (value.dataName) {
-				case "sortList": {
-					this.SFData.sortList = value.data;
-					break;
-				}
-				case "filterList": {
-					this.SFData.filterList - value.data;
-					break;
-				}
-				case "order": {
-					this.SFData.order = value.data;
-					break;
-				}
-				default: {
-					throw new Error({
-						message:
-							"profile_category_list.vue -> methods -> updateData: unknown dataName",
-					});
-				}
-			}
-			console.log("profile_category_list", this.SFData);
-			this.$emit("categoryListUpdateEvent", this.SFData);
-		},
-		_updateDataSelectHelper(value) {
-			this.updateData({
-				dataName: "sortList",
-				data: [value.target.value],
-			});
-		},
-		clickHandler(e) {
-			this.updateData({
-				dataName: "order",
-				data: !this.SFData.order,
-			});
+		destroyModal(data) {
+			this.isShown = false;
 		},
 	},
 };

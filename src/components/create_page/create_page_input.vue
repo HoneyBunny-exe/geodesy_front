@@ -2,7 +2,7 @@
 	<div id="create_input" ref="create_input">
 		<label id="overText">{{ overText }}</label>
 		<slot name="visibleButton"></slot>
-		<input :placeholder="placeholder" v-model="value" @input="update" />
+		<input :placeholder="placeholder" @input="update" />
 		<label id="underText">{{ underText }}</label>
 	</div>
 </template>

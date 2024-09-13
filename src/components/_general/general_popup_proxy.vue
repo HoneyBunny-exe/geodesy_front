@@ -13,6 +13,7 @@ import change_profile_data from "../popup_components/change_profile_data.vue";
 import create_profile from "../popup_components/create_profile.vue";
 import incorrect_field from "../popup_components/incorrect_field.vue";
 import login_profile from "../popup_components/login_profile.vue";
+import create_card from "../popup_components/create_card.vue";
 export default {
 	components: {
 		bad_connection,
@@ -21,6 +22,7 @@ export default {
 		incorrect_field,
 		login_profile,
 		change_auth_data,
+		create_card,
 	},
 	data() {
 		return {
@@ -53,7 +55,7 @@ export default {
 				this.isShown = true;
 				this.timerId = setTimeout(() => {
 					this.isShown = false;
-					this.$emit("changeComponentNameEvent") // Исправить - пропс нельзя изменить
+					this.$emit("changeComponentNameEvent"); // Исправить - пропс нельзя изменить
 				}, this.showTime);
 			}
 		},

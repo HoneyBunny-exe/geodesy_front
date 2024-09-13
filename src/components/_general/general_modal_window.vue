@@ -1,4 +1,3 @@
-<!-- Вызывает событие sendDataEvent -->
 <template>
 	<Transition @enter="onEnter" @leave="onLeave">
 		<div
@@ -116,6 +115,8 @@ export default {
 				z-index: 102;
 				border-radius: 10px;
 				padding: 5vw;
+				margin-left: 10px;
+				margin-right: 10px;
 				box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.6);
 			}
 		}

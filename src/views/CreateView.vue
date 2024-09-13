@@ -111,6 +111,29 @@
 				<img src="@/assets/images/create_page/question.svg" />
 			</template>
 		</cpfinput>
+
+		<cprbuttons
+			:overText="`Опознавательный столб`"
+			:underText="`test`"
+			:parentValue="identification_pillar"
+			:radioButtons="{
+				groupName: 'identification_pillar',
+				data: {
+					detected: 'Обнаружен',
+					undetected: 'Не обнаружен',
+				},
+			}"
+			@updateInputDataEvent="
+				(newValue) => {
+					identification_pillar = newValue;
+				}
+			"
+		>
+			<template #visibleButton>
+				<img src="@/assets/images/create_page/question.svg" />
+			</template>
+		</cprbuttons>
+
 		<cprbuttons
 			:class="`type-of-sign-unique`"
 			:overText="`Тип знака`"
@@ -338,7 +361,7 @@
 		</cprbuttons>
 
 		<cprbuttons
-			:overText="`Внешний сигнал`"
+			:overText="`Наружный знак`"
 			:underText="`test`"
 			:parentValue="outdoor_sign"
 			:radioButtons="{
@@ -464,6 +487,7 @@ import create_page_file_input from "@/components/create_page/create_page_file_in
 import create_page_radio_buttons from "@/components/create_page/create_page_radio_buttons.vue";
 import general_button from "@/components/_general/general_button.vue";
 export default {
+	inject: ["pushToPopup"],
 	data() {
 		return {
 			subjects: [
@@ -585,54 +609,76 @@ export default {
 	},
 	methods: {
 		async send() {
+			let data = {
+				execute_date: this.execute_date,
+				federal_subject: this.federal_subject,
+				latitude: this.latitude,
+				longitude: this.longitude,
+				sign_height_above_ground_level:
+					this.sign_height_above_ground_level,
+				sign_height: this.sign_height,
+				photos: [this.buffer1, this.buffer2],
+				identification_pillar: {
+					value: this.identification_pillar,
+				},
+				type_of_sign: {
+					value: this.type_of_sign,
+					properties: this.properties, // !!! - проверить, как работает при no_sign
+				},
+				monolith_one: {
+					value: this.monolith_one,
+				},
+				monolith_two: {
+					value: this.monolith_two,
+				},
+				monolith_three_and_four: {
+					value: this.monolith_three_and_four,
+				},
+				outdoor_sign: {
+					value: this.outdoor_sign,
+				},
+				ORP_one: {
+					value: this.ORP_one,
+				},
+				ORP_two: {
+					value: this.ORP_two,
+				},
+				trench: {
+					value: this.trench,
+				},
+				satellite_surveillance: {
+					value: this.satellite_surveillance,
+				},
+			};
+			let form = new FormData();
+			Object.entries(data).forEach(([key, value]) => {
+				if (Array.isArray(value)) {
+					for (let i = 0; i < value.length; i++) {
+						form.append(key, value[i], `${i}.png`);
+					}
+				} else if (typeof value === "object" && value !== null) {
+					form.append(key, JSON.stringify(value));
+				} else {
+					form.append(key, value);
+				}
+			});
+
 			await axios({
 				method: "post",
 				url: "http://127.0.0.1:8001/api/v1/card/create/",
 				headers: {
 					Authorization: this.$store.getters.getAccessToken,
+					"Content-Type": "multipart/form-data",
 				},
-				data: {
-					execute_date: this.execute_date,
-					federal_subject: this.federal_subject,
-					latitude: this.latitude,
-					longitude: this.longitude,
-					sign_height_above_ground_level:
-						this.sign_height_above_ground_level,
-					sign_height: this.sign_height,
-					photos: [this.buffer1, this.buffer2],
-					identification_pillar: {
-						value: this.identification_pillar,
-					},
-					type_of_sign: {
-						value: this.type_of_sign,
-						properties: this.properties, // !!! - проверить, как работает при no_sign
-					},
-					monolith_one: {
-						value: this.monolith_one,
-					},
-					monolith_two: {
-						value: this.monolith_two,
-					},
-					monolith_three_and_four: {
-						value: this.monolith_three_and_four,
-					},
-					outdoor_sign: {
-						valur: this.outdoor_sign,
-					},
-					ORP_one: {
-						value: this.ORP_one,
-					},
-					ORP_two: {
-						value: this.ORP_two,
-					},
-					trench: {
-						value: this.trench,
-					},
-					satellite_surveillance: {
-						value: this.satellite_surveillance,
-					},
-				},
-			});
+				data: form,
+			})
+				.then((response) => {
+					console.log(response);
+					this.pushToPopup("create_card");
+				})
+				.catch((error) => {
+					console.log(error);
+				});
 		},
 		execute_date_update(value) {
 			this.execute_date = value;
@@ -643,16 +689,16 @@ export default {
 			console.log(this.federal_subject);
 		},
 		latitude_update(value) {
-			this.latitude = value;
+			this.latitude = +value;
 		},
 		longitude_update(value) {
-			this.longitude = value;
+			this.longitude = +value;
 		},
 		sign_height_above_ground_level_update(value) {
-			this.sign_height_above_ground_level = value;
+			this.sign_height_above_ground_level = +value;
 		},
 		sign_height_update(value) {
-			this.sign_height = value;
+			this.sign_height = +value;
 		},
 		type_of_sign_update(value) {
 			this.type_of_sign = value;
@@ -689,32 +735,29 @@ export default {
 		},
 
 		buffer1_update(value) {
-			let reader = new FileReader();
-			reader.readAsArrayBuffer(value);
-			console.log("buffer1Update was called");
+			// let reader = new FileReader();
+			// reader.readAsArrayBuffer(value);
 
-			reader.onload = () => {
-				console.log("reader.onload was called");
-				this.buffer1 = reader.result;
-				console.log(this.buffer1);
-			};
-			reader.onerror = () => {
-				throw new Error("reader.onerror was called in buffer1Update");
-			};
+			// reader.onload = () => {
+			// 	this.buffer1 = new Uint8Array(reader.result);
+			// 	// console.log(reader.result);
+			// };
+			// reader.onerror = () => {
+			// 	throw new Error("reader.onerror was called in buffer1Update");
+			// };
+			this.buffer1 = value;
 		},
 		buffer2_update(value) {
-			let reader = new FileReader();
-			reader.readAsArrayBuffer(value);
-			console.log("buffer2Update was called");
+			// let reader = new FileReader();
+			// reader.readAsText(value);
 
-			reader.onload = () => {
-				console.log("reader.onload was called");
-				this.buffer2 = reader.result;
-				console.log(this.buffer2);
-			};
-			reader.onerror = () => {
-				throw new Error("reader.onerror was called in buffer2Update");
-			};
+			// reader.onload = () => {
+			// 	this.buffer2 = reader.result;
+			// };
+			// reader.onerror = () => {
+			// 	throw new Error("reader.onerror was called in buffer2Update");
+			// };
+			this.buffer2 = value;
 		},
 	},
 };

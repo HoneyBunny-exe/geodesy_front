@@ -26,6 +26,10 @@ export default {
 			type: String,
 			required: true,
 		},
+		type: {
+			type: Object,
+			required: false,
+		},
 	},
 	methods: {
 		update() {
