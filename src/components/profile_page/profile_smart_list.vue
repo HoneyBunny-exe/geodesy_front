@@ -1,18 +1,24 @@
 <template>
-	<div>
+	<div id="container">
 		<pclheader @categoryListUpdateEvent="categoryListUpdate"></pclheader>
-		<div v-if="this.cards.length !== 0">
-			<!-- <pcard v-for="card in cards" :key="card.id"></pcard> -->
-			<p>Карточки есть</p>
-		</div>
-		<div v-else>
-			<p>Карточки геодезических пунктов не найдены(</p>
+		<div id="card_list">
+			<div v-if="this.cards.length !== 0">
+				<pcard
+					v-for="card in cards"
+					:key="card.card_uuid"
+					:latitude="card.coordinates.latitude"
+					:longitude="card.coordinates.longitude"
+				></pcard>
+			</div>
+			<div id="no_cards" v-else>
+				<p>Не найдено</p>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-import axios from "axios";
+import axios from "../../utils/axios";
 import profile_card_list_header from "./profile_smart_list_components/profile_card_list_header.vue";
 import profile_card from "./profile_smart_list_components/profile_card.vue";
 import { computed } from "vue";
@@ -42,7 +48,7 @@ export default {
 				},
 			],
 			statusState: "no_data",
-			displayedFields: ["latitude", "longitude", "status"],
+			displayedFields: ["photos", "latitude", "longitude", "status"],
 			cards: [],
 		};
 	},
@@ -91,20 +97,57 @@ export default {
 			try {
 				await axios({
 					method: "post",
-					url: "http://127.0.0.1:8001/api/v1/card/info/",
+					url: "api/v1/card/info/",
 					headers: {
 						Authorization: this.$store.getters.getAccessToken,
 					},
 					data: data,
 				}).then((response) => {
 					console.log(response);
+					this.cards = response.data.cards;
 				});
 			} catch (error) {
 				console.log(error.data);
 			}
 		},
+		async downloadPDF(card_uuid) {},
 	},
 };
 </script>
 
-<style></style>
+<style scoped>
+@media (hover: none) {
+	@media (max-width: 480px) {
+		#container {
+			margin: 10px auto 10px auto;
+			padding: 10px;
+			border-radius: 10px;
+			border: 2px solid var(--debug);
+			width: 95vw;
+			> #card_list {
+				width: 100%;
+
+				> #no_cards {
+					position: relative;
+					margin-top: 10px;
+					height: 60px;
+					background-color: var(--ash_grey);
+					border-radius: 10px;
+					> p {
+						width: 100%;
+						height: 40%;
+						overflow: auto;
+						margin: auto;
+						position: absolute;
+						top: 0;
+						left: 0;
+						bottom: 0;
+						right: 0;
+						text-align: center;
+					}
+				}
+			}
+		}
+	}
+}
+</style>

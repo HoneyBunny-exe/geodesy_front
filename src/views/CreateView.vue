@@ -479,7 +479,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "../utils/axios";
 import create_title from "@/components/create_page/create_title.vue";
 import create_page_input from "@/components/create_page/create_page_input.vue";
 import create_page_select from "@/components/create_page/create_page_select.vue";
@@ -665,7 +665,7 @@ export default {
 
 			await axios({
 				method: "post",
-				url: "http://127.0.0.1:8001/api/v1/card/create/",
+				url: "api/v1/card/create/",
 				headers: {
 					Authorization: this.$store.getters.getAccessToken,
 					"Content-Type": "multipart/form-data",

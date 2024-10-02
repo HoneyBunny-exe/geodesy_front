@@ -38,6 +38,9 @@ const ConstantsPlugin = {
 					PLACEHOLDER2: "Введите ещё раз",
 				},
 			},
+			API: {
+				
+			}
 		};
 
 		// Добавление констант в прототип Vue

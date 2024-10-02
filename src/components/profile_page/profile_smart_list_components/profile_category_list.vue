@@ -8,9 +8,16 @@
 				></pfilter>
 			</template>
 		</gmwindow>
-		<gbutton :text="`Сортировка`" @click="isShown = true"></gbutton>
+		<gbutton
+			class="profile_change_personal_data_button"
+			:text="`Сортировка`"
+			@click="isShown = true"
+		></gbutton>
 
-		<gbutton :text="`Изменить порядок`"></gbutton>
+		<gbutton
+			class="profile_change_personal_data_button"
+			:text="`Изменить порядок`"
+		></gbutton>
 	</div>
 </template>
 

@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "../../utils/axios";
 import apply_input from "./auth_input.vue";
 import general_button from "../_general/general_button.vue";
 export default {
@@ -40,7 +40,7 @@ export default {
 			try {
 				await axios({
 					method: "put",
-					url: "http://127.0.0.1:8001/api/v1/registration/",
+					url: "api/v1/registration/",
 					data: {
 						tfa_token: this.$store.getters.getTFAToken,
 						confirm_code: this.confirmCode,

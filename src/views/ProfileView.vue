@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "../utils/axios";
 import profile_intro from "@/components/profile_page/profile_intro.vue";
 import profile_smart_list from "@/components/profile_page/profile_smart_list.vue";
 export default {
@@ -32,7 +32,7 @@ export default {
 			try {
 				let uData = await axios({
 					method: "get",
-					url: "http://127.0.0.1:8001/api/v1/info/user/",
+					url: "api/v1/info/user/",
 					headers: {
 						Authorization: this.$store.getters.getAccessToken,
 					},

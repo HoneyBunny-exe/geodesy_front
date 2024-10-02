@@ -68,7 +68,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "../../utils/axios";
 import general_button from "../_general/general_button.vue";
 import general_modal_window from "../_general/general_modal_window.vue";
 import change_personal_data_item from "../modal_components/profile/change_personal_data_item.vue";
@@ -119,10 +119,7 @@ export default {
 
 				await axios({
 					method: "put",
-					url: "http://127.0.0.1:8001/api/v1/info/user/",
-					headers: {
-						Authorization: this.$store.getters.getAccessToken,
-					},
+					url: "api/v1/info/user/",
 					data: obj,
 				}).then((response) => {
 					console.log(response);
@@ -141,7 +138,7 @@ export default {
 
 				await axios({
 					method:"post",
-					url: "http://127.0.0.1:8000/api/v1/auth/change/",
+					url: "api/v1/auth/change/",
 					headers:{
 						Authorization: this.$store.getters.getAccessToken,
 					},
@@ -151,6 +148,7 @@ export default {
 						"setTFAToken",
 						response.data.tfa_token
 					);
+					console.log("email/password step 1: success");
 				}).catch((error) => {
 					console.log(error);
 				});
@@ -160,7 +158,7 @@ export default {
 				console.log(`profile_intro: destroyModal: fourth condition (email/password: step 2) was called`);
 				await axios({
 					method: "put",
-					url: "http://127.0.0.1:8000/api/v1/auth/change/",
+					url: "api/v1/auth/change/",
 					headers:{
 						Authorization: this.$store.getters.getAccessToken,
 					},

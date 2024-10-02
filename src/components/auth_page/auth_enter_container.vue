@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "@/utils/axios";
 import auth_input from "./auth_input.vue";
 import general_button from "../_general/general_button.vue";
 export default {
@@ -71,7 +71,7 @@ export default {
 			try {
 				await axios({
 					method: "post",
-					url: "http://127.0.0.1:8001/api/v1/auth/",
+					url: "api/v1/auth/",
 					data: {
 						email: this.email,
 						password: this.password,

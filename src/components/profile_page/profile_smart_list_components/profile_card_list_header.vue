@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<pclist @categoryListUpdateEvent="categoryListUpdate"></pclist>
-		<ppccontainer :listProp="this.categoryList"></ppccontainer>
+		<ppccontainer></ppccontainer>
 	</div>
 </template>
 

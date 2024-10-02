@@ -1,10 +1,6 @@
 <template>
 	<div>
-		<ppcelem
-			v-for="elem in list"
-			:data-prop="elem.data"
-			:key="elem.id"
-		></ppcelem>
+		<ppcelem></ppcelem>
 	</div>
 </template>
 
@@ -18,12 +14,6 @@ export default {
 		return {
 			list: this.listProp,
 		};
-	},
-	props: {
-		listProp: {
-			type: Array,
-			required: true,
-		},
 	},
 };
 </script>

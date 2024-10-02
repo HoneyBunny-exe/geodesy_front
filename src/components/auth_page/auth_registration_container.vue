@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "../../utils/axios";
 import agreement from "./agreement.vue";
 import auth_input from "./auth_input.vue";
 import general_button from "../_general/general_button.vue";
@@ -117,7 +117,7 @@ export default {
 			try {
 				let response = await axios({
 					method: "post",
-					url: "http://127.0.0.1:8001/api/v1/registration/",
+					url: "api/v1/registration/",
 					data: {
 						first_name: this.firstName,
 						second_name: this.secondName,

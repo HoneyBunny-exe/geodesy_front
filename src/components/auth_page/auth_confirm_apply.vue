@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "../../utils/axios";
 import general_apply_input from "../_general/general_apply_input.vue";
 import general_button from "../_general/general_button.vue";
 export default {
@@ -39,7 +39,7 @@ export default {
 			try {
 				await axios({
 					method: "put",
-					url: "http://127.0.0.1:8001/api/v1/auth/forgotten/password/",
+					url: "api/v1/auth/forgotten/password/",
 					data: {
 						tfa_token: this.$store.getters.getTFAToken,
 						confirm_code: this.confirmCode,
