@@ -4,6 +4,7 @@
 	<div id="gap"></div>
 	<popup
 		:component-name="popupComponentName"
+		:message="message"
 		@changeComponentNameEvent="change"
 	></popup>
 </template>
@@ -15,6 +16,7 @@ export default {
 	data() {
 		return {
 			popupComponentName: "no_component",
+			message: "",
 		};
 	},
 	components: {
@@ -22,14 +24,14 @@ export default {
 		popup: general_popup_proxy,
 	},
 	methods: {
-		pushToPopup(componentName) {
-			console.log(this.popupComponentName);
+		pushToPopup(componentName, message) {
 			this.popupComponentName = componentName;
-			console.log(this.popupComponentName);
+			this.message = message;
 			console.log("App.vue: pushToPopup was called");
 		},
 		change() {
 			this.popupComponentName = "no_component";
+			this.message = "";
 		},
 	},
 	provide() {

@@ -45,6 +45,11 @@ export default {
 		update() {
 			this.$emit(this.eventName, this.value);
 		},
+
+		// меняет стиль всего элемента - принимает параметром название css класса
+		change_style(){
+
+		}
 	},
 };
 </script>

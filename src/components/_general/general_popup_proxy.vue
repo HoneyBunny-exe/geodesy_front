@@ -1,7 +1,11 @@
 <template>
 	<Transition @enter="onEnter" name="show">
 		<div v-if="isShown" id="container">
-			<component :is="componentName" :key="componentName"></component>
+			<component
+				:is="componentName"
+				:key="componentName"
+				:message="message"
+			></component>
 		</div>
 	</Transition>
 </template>
@@ -14,6 +18,7 @@ import create_profile from "../popup_components/create_profile.vue";
 import incorrect_field from "../popup_components/incorrect_field.vue";
 import login_profile from "../popup_components/login_profile.vue";
 import create_card from "../popup_components/create_card.vue";
+import incorrect_enter_data from "../popup_components/incorrect_enter_data.vue";
 export default {
 	components: {
 		bad_connection,
@@ -23,6 +28,7 @@ export default {
 		login_profile,
 		change_auth_data,
 		create_card,
+		incorrect_enter_data,
 	},
 	data() {
 		return {
@@ -35,6 +41,10 @@ export default {
 		componentName: {
 			type: String,
 			required: true,
+		},
+		message: {
+			type: String,
+			required: false,
 		},
 	},
 	methods: {

@@ -4,10 +4,31 @@
 		<p class="title_small">
 			На указанную вами почту пришел код-подтверждение
 		</p>
-		<gainput
+		<!-- <gainput
 			:parent-value="confirmCode"
 			@updateInputDataEvent="confirmCodeUpdate"
-		></gainput>
+		></gainput> -->
+		<agree_input
+			:value_prop="confirm_code"
+			:style_prop="confirm_code_style"
+			:label_prop="label"
+			@update_data_event="
+				(new_value) => {
+					confirm_code = new_value;
+				}
+			"
+			@update_style_event="
+				(new_value) => {
+					confirm_code_style = new_value;
+				}
+			"
+			@update_label_event="
+				(new_value) => {
+					label = new_value;
+				}
+			"
+		>
+		</agree_input>
 		<gbutton
 			class="auth_button"
 			:text="`Отправить`"
@@ -19,22 +40,23 @@
 <script>
 import axios from "../../utils/axios";
 import general_apply_input from "../_general/general_apply_input.vue";
+import agree_input from "../UI/input/agree_input.vue";
 import general_button from "../_general/general_button.vue";
 export default {
 	inject: ["pushToPopup"],
 	data() {
 		return {
-			confirmCode: "",
+			confirm_code: "",
+			confirm_code_style: "normal",
+			label: "",
 		};
 	},
 	components: {
 		gainput: general_apply_input,
 		gbutton: general_button,
+		agree_input,
 	},
 	methods: {
-		confirmCodeUpdate(value) {
-			this.confirmCode = value;
-		},
 		async sendData() {
 			try {
 				await axios({
@@ -42,7 +64,7 @@ export default {
 					url: "api/v1/auth/forgotten/password/",
 					data: {
 						tfa_token: this.$store.getters.getTFAToken,
-						confirm_code: this.confirmCode,
+						confirm_code: this.confirm_code,
 					},
 				}).then((result) => {
 					//test
@@ -53,6 +75,12 @@ export default {
 				});
 			} catch (error) {
 				console.log(error);
+				let message =
+					error.response.data.detail ??
+					error.response.data.confirm_code[0];
+				console.log(`message = ${message}`);
+				this.label = message;
+				this.confirm_code_style = "error";
 			}
 		},
 	},
