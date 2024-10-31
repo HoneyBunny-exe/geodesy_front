@@ -1,96 +1,161 @@
 <template>
 	<div id="container">
 		<ctitle :title="`Карточка обследования пунктов ГГС`"></ctitle>
-		<cpinput
-			:inputAttributes="{
-				type: `date`,
-			}"
-			:parentValue="execute_date"
-			:overText="`Дата проведения работ`"
-			:underText="`test`"
-			@updateInputDataEvent="execute_date_update"
-		>
-			<template #visibleButton>
-				<img src="@/assets/images/create_page/question.svg" />
-			</template>
-		</cpinput>
-		<cpselect
-			:overText="`Субъект Российской Федерации`"
-			:underText="`test`"
-			:options="subjects"
-			:selectName="`federal_subjects`"
-			@updateInputDataEvent="federal_subject_update"
-		>
-			<template #visibleButton>
-				<img
-					src="@/assets/images/create_page/question.svg"
-				/> </template
-		></cpselect>
 
+		<!-- Дата проведения работ -->
+		<date_input_h
+			:value_prop="execute_date"
+			:style_prop="execute_date_style"
+			:over_label_prop="execute_date_over_label"
+			:under_label_prop="execute_date_under_label"
+			:modal_component_prop="`execute_date`"
+			@update_data_event="
+				(new_value) => {
+					execute_date = new_value;
+				}
+			"
+			@update_style_event="
+				(new_value) => {
+					execute_date_style = new_value;
+				}
+			"
+			@update_under_label_event="
+				(new_value) => {
+					execute_date_under_label = new_value;
+				}
+			"
+		>
+		</date_input_h>
+
+		<!-- Субъект рф -->
+		<select_input_h
+			:value_prop="federal_subject"
+			:style_prop="federal_subject_style"
+			:over_label_prop="federal_subject_over_label"
+			:under_label_prop="federal_subject_under_label"
+			:options_prop="subjects"
+			:modal_component_prop="`federal_subject`"
+			@update_data_event="
+				(new_value) => {
+					federal_subject = new_value;
+				}
+			"
+			@update_style_event="
+				(new_value) => {
+					federal_subject_style = new_value;
+				}
+			"
+			@update_under_label_event="
+				(new_value) => {
+					federal_subject_under_label = new_value;
+				}
+			"
+		>
+		</select_input_h>
+
+		<!-- Широта / Долгота -->
 		<div id="latitude_longitude_wrapper">
-			<cpinput
-				:overText="`Широта`"
-				:underText="`test`"
-				:parentValue="latitude"
-				:inputAttributes="{
-					type: `number`,
-					min: `-90`,
-					max: `90`,
-					step: '0.000001',
-				}"
-				@updateInputDataEvent="latitude_update"
+			<text_input_h
+				:value_prop="latitude"
+				:style_prop="latitude_style"
+				:over_label_prop="latitude_over_label"
+				:under_label_prop="latitude_under_label"
+				:modal_component_prop="`latitude`"
+				@update_data_event="
+					(new_value) => {
+						latitude = new_value;
+					}
+				"
+				@update_style_event="
+					(new_value) => {
+						latitude_style = new_value;
+					}
+				"
+				@update_under_label_event="
+					(new_value) => {
+						latitude_under_label = new_value;
+					}
+				"
 			>
-				<template #visibleButton>
-					<img src="@/assets/images/create_page/question.svg" />
-				</template>
-			</cpinput>
-			<cpinput
-				:overText="`Долгота`"
-				:underText="`test`"
-				:parentValue="longitude"
-				:inputAttributes="{
-					type: `number`,
-					min: `-180`,
-					max: `180`,
-					step: '0.000001',
-				}"
-				@updateInputDataEvent="longitude_update"
+			</text_input_h>
+			<text_input_h
+				:value_prop="longitude"
+				:style_prop="longitude_style"
+				:over_label_prop="longitude_over_label"
+				:under_label_prop="longitude_under_label"
+				:modal_component_prop="`longitude`"
+				@update_data_event="
+					(new_value) => {
+						longitude = new_value;
+					}
+				"
+				@update_style_event="
+					(new_value) => {
+						longitude_style = new_value;
+					}
+				"
+				@update_under_label_event="
+					(new_value) => {
+						longitude_under_label = new_value;
+					}
+				"
 			>
-				<template #visibleButton>
-					<img src="@/assets/images/create_page/question.svg" />
-				</template>
-			</cpinput>
+			</text_input_h>
 		</div>
 
-		<cpinput
-			:overText="`Высота над уровнем моря (в метрах)`"
-			:underText="`test`"
-			:parentValue="sign_height_above_ground_level"
-			:inputAttributes="{
-				type: `number`,
-				step: `0.001`,
-			}"
-			@updateInputDataEvent="sign_height_above_ground_level_update"
+		<!-- Высота над уровнем моря -->
+		<text_input_h
+			:value_prop="sign_height_above_ground_level"
+			:style_prop="sign_height_above_ground_level_style"
+			:over_label_prop="sign_height_above_ground_level_over_label"
+			:under_label_prop="sign_height_above_ground_level_under_label"
+			:modal_component_prop="`sign_height_above_ground_level`"
+			@update_data_event="
+				(new_value) => {
+					sign_height_above_ground_level = new_value;
+				}
+			"
+			@update_style_event="
+				(new_value) => {
+					sign_height_above_ground_level_style = new_value;
+				}
+			"
+			@update_under_label_event="
+				(new_value) => {
+					sign_height_above_ground_level_under_label = new_value;
+				}
+			"
 		>
-			<template #visibleButton>
-				<img src="@/assets/images/create_page/question.svg" />
-			</template>
-		</cpinput>
-		<cpinput
-			:overText="`Высота знака (в метрах)`"
-			:underText="test"
-			:parentValue="sign_height"
-			:inputAttributes="{
-				type: `number`,
-				min: `0`,
-				step: `0.01`,
+		</text_input_h>
+
+		<!-- Высота знака -->
+		<text_input_h
+			:value_prop="sign_height"
+			:style_prop="sign_height_style"
+			:over_label_prop="sign_height_over_label"
+			:under_label_prop="sign_height_under_label"
+			:modal_component_prop="`sign_height`"
+			:input_prop="{
+				type: 'number',
 			}"
-			@updateInputDataEvent="sign_height_update"
+			@update_data_event="
+				(new_value) => {
+					sign_height = new_value;
+				}
+			"
+			@update_style_event="
+				(new_value) => {
+					sign_height_style = new_value;
+				}
+			"
+			@update_under_label_event="
+				(new_value) => {
+					sign_height_under_label = new_value;
+				}
+			"
 		>
-			<template #visibleButton>
-				<img src="@/assets/images/create_page/question.svg" />
-			</template>
-		</cpinput>
+		</text_input_h>
+
 		<cpfinput
 			:overText="`Фотография внешнего обрамления`"
 			:underText="`test`"
@@ -112,35 +177,47 @@
 			</template>
 		</cpfinput>
 
-		<cprbuttons
-			:overText="`Опознавательный столб`"
-			:underText="`test`"
-			:parentValue="identification_pillar"
-			:radioButtons="{
+		<!-- Опознавательный столб -->
+		<radio_input_h
+			:value_prop="identification_pillar"
+			:style_prop="identification_pillar_style"
+			:over_label_prop="identification_pillar_over_label"
+			:under_label_prop="identification_pillar_under_label"
+			:modal_component_prop="`identification_pillar`"
+			:radio_buttons_prop="{
 				groupName: 'identification_pillar',
 				data: {
 					detected: 'Обнаружен',
 					undetected: 'Не обнаружен',
 				},
 			}"
-			@updateInputDataEvent="
-				(newValue) => {
-					identification_pillar = newValue;
+			@update_data_event="
+				(new_value) => {
+					identification_pillar = new_value;
+				}
+			"
+			@update_style_event="
+				(new_value) => {
+					identification_pillar_style = new_value;
+				}
+			"
+			@update_under_label_event="
+				(new_value) => {
+					identification_pillar_under_label = new_value;
 				}
 			"
 		>
-			<template #visibleButton>
-				<img src="@/assets/images/create_page/question.svg" />
-			</template>
-		</cprbuttons>
+		</radio_input_h>
 
-		<cprbuttons
-			:class="`type-of-sign-unique`"
-			:overText="`Тип знака`"
-			:underText="`test`"
-			:parentValue="type_of_sign"
-			:radioButtons="{
-				groupName: `type_of_sign`,
+		<!-- Тип знака -->
+		<radio_input_h
+			:value_prop="type_of_sign"
+			:style_prop="type_of_sign_style"
+			:over_label_prop="type_of_sign_over_label"
+			:under_label_prop="type_of_sign_under_label"
+			:modal_component_prop="`type_of_sign`"
+			:radio_buttons_prop="{
+				groupName: 'type_of_sign',
 				data: {
 					signal: 'Сигнал',
 					pyramid: 'Пирамида',
@@ -149,13 +226,26 @@
 					no_sign: 'Отсутствует',
 				},
 			}"
-			@updateInputDataEvent="type_of_sign_update"
+			@update_data_event="
+				(new_value) => {
+					type_of_sign = new_value;
+				}
+			"
+			@update_style_event="
+				(new_value) => {
+					type_of_sign_style = new_value;
+				}
+			"
+			@update_under_label_event="
+				(new_value) => {
+					type_of_sign_under_label = new_value;
+				}
+			"
 		>
-			<template #visibleButton>
-				<img src="@/assets/images/create_page/question.svg" />
-			</template>
-		</cprbuttons>
+		</radio_input_h>
+
 		<div id="pyramid_value" v-if="type_of_sign === 'pyramid'">
+			<!-- Доделать: учти, что данные в properties меняются в функции type_of_sign_update -->
 			<cprbuttons
 				:overText="`Материал пирамиды`"
 				:underText="`test`"
@@ -482,10 +572,14 @@
 import axios from "../utils/axios";
 import create_title from "@/components/create_page/create_title.vue";
 import create_page_input from "@/components/create_page/create_page_input.vue";
-import create_page_select from "@/components/create_page/create_page_select.vue";
 import create_page_file_input from "@/components/create_page/create_page_file_input.vue";
 import create_page_radio_buttons from "@/components/create_page/create_page_radio_buttons.vue";
 import general_button from "@/components/_general/general_button.vue";
+import text_input_h from "@/components/UI/input/text_input_h.vue";
+import date_input_h from "@/components/UI/input/date_input_h.vue";
+import select_input_h from "@/components/UI/input/select_input_h.vue";
+import radio_input_h from "@/components/UI/input/radio_input_h.vue";
+import modal_profile_components from "@/components/modal_components/profile/propfile_modal_components";
 export default {
 	inject: ["pushToPopup"],
 	data() {
@@ -579,16 +673,51 @@ export default {
 				"Иные территории, включая город и космодром Байконур",
 			],
 			execute_date: "",
+			execute_date_style: "normal",
+			execute_date_over_label: "Дата проведения работ",
+			execute_date_under_label: "",
+
 			federal_subject: "",
+			federal_subject_style: "normal",
+			federal_subject_over_label: "Субъект Российской Федерации",
+			federal_subject_under_label: "",
+
 			latitude: "",
+			latitude_style: "normal",
+			latitude_over_label: "Широта",
+			latitude_under_label: "",
+
 			longitude: "",
+			longitude_style: "normal",
+			longitude_over_label: "Долгота",
+			longitude_under_label: "",
+
 			sign_height_above_ground_level: "",
+			sign_height_above_ground_level_style: "normal",
+			sign_height_above_ground_level_over_label:
+				"Высота над уровнем моря",
+			sign_height_above_ground_level_under_label: "",
+
 			sign_height: "",
+			sign_height_style: "normal",
+			sign_height_over_label: "Высота знака (в метрах)",
+			sign_height_under_label: "",
+
 			buffer1: null,
 			buffer2: null,
+
 			identification_pillar: "",
+			identification_pillar_style: "normal",
+			identification_pillar_over_label: "Опознавательный столб",
+			identification_pillar_under_label: "",
+
 			type_of_sign: "",
-			properties: "", // свойства для type_of_sign
+			type_of_sign_style: "normal",
+			type_of_sign_over_label: "Тип знака",
+			type_of_sign_under_label: "",
+
+			properties: {}, // свойства для type_of_sign
+
 			monolith_one: "",
 			monolith_two: "",
 			monolith_three_and_four: "",
@@ -602,10 +731,14 @@ export default {
 	components: {
 		ctitle: create_title,
 		cpinput: create_page_input,
-		cpselect: create_page_select,
 		cpfinput: create_page_file_input,
 		cprbuttons: create_page_radio_buttons,
 		gbutton: general_button,
+
+		text_input_h,
+		date_input_h,
+		select_input_h,
+		radio_input_h,
 	},
 	methods: {
 		async send() {
@@ -701,12 +834,17 @@ export default {
 			this.sign_height = +value;
 		},
 		type_of_sign_update(value) {
-			this.type_of_sign = value;
 			switch (value) {
 				case "pyramid": {
 					this.properties = {
 						material: "",
+						material_style: "normal",
+						material_over_label: "Материал пирамиды",
+						material_under_label: "",
 						geometry: "",
+						geometry_style: "normal",
+						geometry_over_label: "Геометрия пирамиды",
+						geometry_under_label: "",
 					};
 					break;
 				}
@@ -732,6 +870,7 @@ export default {
 				case "no_sign":
 					this.properties = {};
 			}
+			this.type_of_sign = value;
 		},
 
 		buffer1_update(value) {

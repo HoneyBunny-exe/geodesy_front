@@ -10,6 +10,9 @@
 
 <script>
 import base_input from "./base_input.vue";
+/**
+ * @mixes base_input
+ */
 export default {
 	mixins: [base_input],
 	props: {

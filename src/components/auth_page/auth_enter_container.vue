@@ -21,8 +21,8 @@
 		<text_input
 			:style_prop="email_style"
 			:value_prop="email"
-			:over_label="`Почта`"
-			:under_label="email_under_label"
+			:over_label_prop="`Почта`"
+			:under_label_prop="email_under_label"
 			@update_data_event="
 				(new_value) => {
 					console.log(`new_value = ${new_value}`);
@@ -43,8 +43,8 @@
 		<text_input
 			:style_prop="password_style"
 			:value_prop="password"
-			:over_label="`Пароль`"
-			:under_label="password_under_label"
+			:over_label_prop="`Пароль`"
+			:under_label_prop="password_under_label"
 			@update_data_event="
 				(new_value) => {
 					password = new_value;

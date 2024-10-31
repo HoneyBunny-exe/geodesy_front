@@ -1,13 +1,13 @@
 <!-- Подтверждение создания аккаунта -->
 <template>
 	<div id="container">
-		<ainput
-			class="auth_input"
-			:confident="`auto`"
-			:parent-value="confirmCode"
-			@confirmCodeUpdateEvent="confirmCodeUpdate"
-			:event-name="input1"
-		></ainput>
+		<agree_input
+			:value_prop="confirm_code"
+			:style_prop="style"
+			:over_label_prop="over_label"
+			:under_label_prop="under_label"
+		></agree_input>
+
 		<gbutton
 			class="auth_button"
 			:text="this.$constants.STRING.SEND"
@@ -18,19 +18,21 @@
 
 <script>
 import axios from "../../utils/axios";
-import apply_input from "./auth_input.vue";
+import agree_input from "../UI/input/agree_input.vue";
 import general_button from "../_general/general_button.vue";
 export default {
 	inject: ["pushToPopup"],
 	data() {
 		return {
-			confirmCode: "",
-			input1: "confirmCodeUpdateEvent",
+			confirm_code: "",
+			style: "normal",
+			over_label: "Код подтверждения",
+			under_label: "",
 		};
 	},
 	components: {
-		ainput: apply_input,
 		gbutton: general_button,
+		agree_input,
 	},
 	methods: {
 		confirmCodeUpdate(value) {
@@ -61,12 +63,20 @@ export default {
 				});
 			} catch (error) {
 				console.log(error);
+				let code_error =
+					error.response.data.confirm_code?.[0] ??
+					error.response.data.detail ??
+					"";
+				if (code_error !== "") {
+					this.style = "error";
+					this.under_label = code_error;
+				}
 			}
 
 			// test
-			console.log(this.$store.getters.getLoggedIn);
-			console.log(this.$store.getters.getRefreshToken);
-			console.log(this.$store.getters.getAccessToken);
+			// console.log(this.$store.getters.getLoggedIn);
+			// console.log(this.$store.getters.getRefreshToken);
+			// console.log(this.$store.getters.getAccessToken);
 		},
 	},
 };

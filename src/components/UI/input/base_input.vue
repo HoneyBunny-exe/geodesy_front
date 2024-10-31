@@ -1,4 +1,8 @@
 <script>
+// @ts-check
+/**
+ * @mixin
+ */
 export default {
 	props: {
 		style_prop: {

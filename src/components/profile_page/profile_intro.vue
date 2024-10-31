@@ -120,6 +120,9 @@ export default {
 				await axios({
 					method: "put",
 					url: "api/v1/info/user/",
+					headers:{
+						Authorization: this.$store.getters.getAccessToken,
+					},
 					data: obj,
 				}).then((response) => {
 					console.log(response);
